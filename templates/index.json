@@ -8,6 +8,68 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "header": {
+      "type": "purelane-header",
+      "settings": {}
+    },
+    "hero": {
+      "type": "purelane-hero",
+      "settings": {}
+    },
+    "reviews": {
+      "type": "purelane-reviews",
+      "settings": {}
+    },
+    "ingredients": {
+      "type": "purelane-ingredients",
+      "settings": {}
+    },
+    "pillars": {
+      "type": "purelane-pillars",
+      "settings": {}
+    },
+    "combos": {
+      "type": "purelane-combos",
+      "settings": {}
+    },
+    "bestsellers": {
+      "type": "purelane-bestsellers",
+      "settings": {}
+    },
+    "range": {
+      "type": "purelane-range",
+      "settings": {}
+    },
+    "bundles": {
+      "type": "purelane-bundles",
+      "settings": {}
+    },
+    "whybundles": {
+      "type": "purelane-whybundles",
+      "settings": {}
+    },
+    "categories": {
+      "type": "purelane-categories",
+      "settings": {}
+    },
+    "footer": {
+      "type": "purelane-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "header",
+    "hero",
+    "reviews",
+    "ingredients",
+    "pillars",
+    "combos",
+    "bestsellers",
+    "range",
+    "bundles",
+    "whybundles",
+    "categories",
+    "footer"
+  ]
 }
