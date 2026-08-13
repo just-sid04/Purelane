@@ -15,7 +15,7 @@
     "ingredients": { "type": "purelane-ingredients", "settings": {} },
     "pillars": { "type": "purelane-pillars", "settings": {} },
     "combos": { "type": "purelane-combos", "settings": {} },
-    "bestsellers": { "type": "purelane-bestsellers", "settings": { "product_list": ["gid://shopify/Product/9597133947112", "gid://shopify/Product/9597135519976", "gid://shopify/Product/9597135552744"], "products_to_show": 3 } },
+    "bestsellers": { "type": "purelane-bestsellers", "settings": { "product_list": ["gid://shopify/Product/9597135421672","gid://shopify/Product/9597133947112","gid://shopify/Product/9597135519976","gid://shopify/Product/9597135618280","gid://shopify/Product/9597135585512","gid://shopify/Product/9597135552744","gid://shopify/Product/9597133684968","gid://shopify/Product/9597135487208"], "products_to_show": 8 } },
     "range": { "type": "purelane-range", "settings": {} },
     "bundles": { "type": "purelane-bundles", "settings": {} },
     "whybundles": { "type": "purelane-whybundles", "settings": {} },
