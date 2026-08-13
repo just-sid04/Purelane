@@ -1,10 +1,6 @@
 /*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -15,7 +11,7 @@
     "ingredients": { "type": "purelane-ingredients", "settings": {} },
     "pillars": { "type": "purelane-pillars", "settings": {} },
     "combos": { "type": "purelane-combos", "settings": {} },
-    "bestsellers": { "type": "purelane-bestsellers", "settings": {} },
+    "bestsellers": { "type": "purelane-bestsellers", "settings": { "product_list": ["gid://shopify/Product/9597135552744", "gid://shopify/Product/9597135519976"], "products_to_show": 2 } },
     "range": { "type": "purelane-range", "settings": {} },
     "bundles": { "type": "purelane-bundles", "settings": {} },
     "whybundles": { "type": "purelane-whybundles", "settings": {} },
