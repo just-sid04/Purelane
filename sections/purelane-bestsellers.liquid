@@ -61,13 +61,18 @@
         </article>
 
         {%- if products_to_show > 4 -%}
-          <article class="purelane-glass glass purelane-card card rv">
-            <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Eco Pick</span><span class="purelane-pimg pimg p-floor" role="img"></span></div>
-            <h4 class="purelane-card-title">Herbal Neem Floor Cleaner</h4>
-            <div class="purelane-card-rate rate"><b>★ 4.9</b> · 312 reviews</div>
-            <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
-            <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
-          </article>
+          {%- assign neem_test_product = all_products['herbal-neem-floor-cleaner'] -%}
+          {%- if neem_test_product != blank -%}
+            {% render 'purelane-product-card', product: neem_test_product, badge_label: 'Eco Pick' %}
+          {%- else -%}
+            <article class="purelane-glass glass purelane-card card rv">
+              <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Eco Pick</span><span class="purelane-pimg pimg p-floor" role="img"></span></div>
+              <h4 class="purelane-card-title">Herbal Neem Floor Cleaner</h4>
+              <div class="purelane-card-rate rate"><b>★ 4.9</b> · 312 reviews</div>
+              <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+              <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
+            </article>
+          {%- endif -%}
 
           <article class="purelane-glass glass purelane-card card rv rv-d1">
             <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Gentle</span><span class="purelane-pimg pimg p-dish" role="img"></span></div>
@@ -104,42 +109,12 @@
   "tag": "section",
   "class": "purelane-bestsellers-section",
   "settings": [
-    {
-      "type": "text",
-      "id": "kicker",
-      "label": "Kicker Text",
-      "default": "Bestsellers"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Section Heading",
-      "default": "Loved by 30,000 homes"
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Featured Collection"
-    },
-    {
-      "type": "product_list",
-      "id": "product_list",
-      "label": "Select Products Manually"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 2,
-      "max": 8,
-      "step": 1,
-      "label": "Products to Show",
-      "default": 8
-    }
+    {"type":"text","id":"kicker","label":"Kicker Text","default":"Bestsellers"},
+    {"type":"text","id":"title","label":"Section Heading","default":"Loved by 30,000 homes"},
+    {"type":"collection","id":"collection","label":"Featured Collection"},
+    {"type":"product_list","id":"product_list","label":"Select Products Manually"},
+    {"type":"range","id":"products_to_show","min":2,"max":8,"step":1,"label":"Products to Show","default":8}
   ],
-  "presets": [
-    {
-      "name": "Purelane Bestsellers"
-    }
-  ]
+  "presets": [{"name":"Purelane Bestsellers"}]
 }
 {% endschema %}
