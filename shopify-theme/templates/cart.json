@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "header": {
+      "type": "purelane-header"
+    },
+    "main": {
+      "type": "purelane-bestsellers"
+    },
+    "footer": {
+      "type": "purelane-footer"
+    }
+  },
+  "order": [
+    "header",
+    "main",
+    "footer"
+  ]
+}

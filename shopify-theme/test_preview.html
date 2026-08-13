@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purelane Shopify Theme — Local Preview Harness</title>
+  <meta name="description" content="Local test harness rendering all Purelane Shopify Dawn OS 2.0 theme sections.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/purelane-theme.css">
+
+  <style>
+    .harness-banner{background:#2d1f4e;border-bottom:1px solid rgba(236,230,247,.14);padding:8px 18px;
+      font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:rgba(236,230,247,.55);display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:9999}
+    .harness-banner span{color:#f0a03c}
+  </style>
+</head>
+<body>
+
+<!-- Harness banner -->
+<div class="harness-banner" aria-hidden="true">
+  🌿 <span>Purelane</span> · Shopify Theme Preview Harness · All Sections Loaded
+</div>
+
+<!-- ── GLOBAL BACKGROUND ─────────────────────────────────────────── -->
+<div class="purelane-scenes scenes" id="scenes" data-sc="1" data-d="1">
+  <div class="purelane-scene scene s1 on"></div>
+  <div class="purelane-scene scene s2"></div>
+  <div class="purelane-scene scene s3"></div>
+  <div class="purelane-scene scene s4"></div>
+  <div class="water" id="water">
+    <div class="wl wl-a"><svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs><linearGradient id="cg_a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eafff4" stop-opacity="0"/><stop offset=".18" stop-color="#f2fff8" stop-opacity=".95"/><stop offset=".5" stop-color="#ffffff" stop-opacity="1"/><stop offset=".82" stop-color="#e6fbef" stop-opacity=".9"/><stop offset="1" stop-color="#eafff4" stop-opacity="0"/></linearGradient>
+      <filter id="wf" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.0022 0.019" numOctaves="3" seed="21" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="72" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
+      <g filter="url(#wf)"><path d="M262 230 Q372 261 482 238 Q592 247 702 250 Q812 210 923 235 Q1033 201 1143 213 Q1253 232 1363 215 Q1473 261 1583 238 Q1694 248 1804 250" stroke="url(#cg_a)" stroke-width="5.1" fill="none" opacity="0.45" stroke-linecap="round"/>
+      <path d="M137 256 Q307 242 477 258 Q646 238 816 245 Q985 259 1155 247 Q1324 277 1494 262 Q1664 267 1833 269" stroke="url(#cg_a)" stroke-width="4.4" fill="none" opacity="0.28" stroke-linecap="round"/>
+      <path d="M389 715 Q514 756 639 725 Q763 738 888 742 Q1013 688 1138 721 Q1262 674 1387 692 Q1512 716 1636 694" stroke="url(#cg_a)" stroke-width="5.7" fill="none" opacity="0.37" stroke-linecap="round"/>
+      <path d="M140 308 Q297 310 454 302 Q611 321 769 312 Q926 314 1083 316 Q1240 298 1397 309" stroke="url(#cg_a)" stroke-width="5.5" fill="none" opacity="0.47" stroke-linecap="round"/></g>
+    </svg></div>
+    <div class="wl wl-c"><svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4fff9" stop-opacity=".85"/><stop offset=".38" stop-color="#dcf6e7" stop-opacity=".28"/><stop offset="1" stop-color="#d4f2e2" stop-opacity="0"/></linearGradient></defs>
+      <polygon points="95,-80 152,-80 517,1180 439,1180" fill="url(#sg)" opacity="0.26"/>
+      <polygon points="433,-80 491,-80 885,1180 807,1180" fill="url(#sg)" opacity="0.41"/>
+      <polygon points="751,-80 919,-80 1180,1180 953,1180" fill="url(#sg)" opacity="0.31"/>
+      <polygon points="1366,-80 1520,-80 1898,1180 1690,1180" fill="url(#sg)" opacity="0.28"/>
+    </svg></div>
+    <div class="bub">
+      <span style="--x:91.9%;--s:6.7px;--dur:21.5s;--dly:19.0s;--drift:-11px"></span>
+      <span style="--x:43.4%;--s:5.7px;--dur:26.8s;--dly:16.1s;--drift:-11px"></span>
+      <span style="--x:6.0%;--s:3.6px;--dur:24.4s;--dly:10.6s;--drift:3px"></span>
+      <span style="--x:70.3%;--s:3.3px;--dur:20.9s;--dly:9.2s;--drift:-39px"></span>
+      <span style="--x:2.1%;--s:7.1px;--dur:22.0s;--dly:3.1s;--drift:-37px"></span>
+      <span style="--x:69.4%;--s:8.1px;--dur:21.9s;--dly:10.7s;--drift:-24px"></span>
+      <span style="--x:64.1%;--s:8.2px;--dur:17.3s;--dly:9.0s;--drift:2px"></span>
+      <span style="--x:21.8%;--s:7.1px;--dur:15.7s;--dly:18.4s;--drift:-13px"></span>
+    </div>
+  </div>
+  <div class="vig"></div>
+</div>
+
+<!-- ── HEADER SECTION ─────────────────────────────────────────────── -->
+<div class="purelane-ticker ticker" aria-hidden="true">
+  <div class="purelane-track track">
+    <span>Free shipping <b>on every bundle across India</b></span>
+    <span>100% plant-based <b>and non-toxic</b></span>
+    <span>Loved by <b>30,000+ happy homes</b></span>
+    <span>Buy 3 <b>at flat ₹499</b></span>
+    <span>Free shipping <b>on every bundle across India</b></span>
+    <span>100% plant-based <b>and non-toxic</b></span>
+    <span>Loved by <b>30,000+ happy homes</b></span>
+    <span>Buy 3 <b>at flat ₹499</b></span>
+  </div>
+</div>
+<header class="purelane-hdr" id="hdr">
+  <div class="purelane-navpill navpill glass">
+    <a class="brand" href="#top" aria-label="Purelane home">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#b8701c"><path d="M12 3 20.5 8v8L12 21 3.5 16V8L12 3Z"/><path d="M12 12 20.5 8M12 12v9M12 12 3.5 8"/></svg></span>
+      <span class="txt"><span class="n1">Purelane</span><span class="n2">Clean, simply</span></span>
+    </a>
+    <nav class="purelane-nav nav" aria-label="Main">
+      <a href="#top">Home</a>
+      <a href="#ingredients">Ingredients</a>
+      <a href="#how">How it works</a>
+      <a href="#shop">Shop</a>
+      <a href="#bundles">Bundles</a>
+    </nav>
+    <div class="navtools">
+      <button class="ico hide-s" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <a class="ico hide-s" href="#account" aria-label="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-5.6 7-5.6s7 2 7 5.6"/></svg></a>
+      <a class="ico" href="/cart" aria-label="Cart, 0 items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h2l2.2 10.4a1.6 1.6 0 0 0 1.6 1.3h7.6a1.6 1.6 0 0 0 1.6-1.3L20.5 9H6.4"/><circle cx="10" cy="20.5" r="1.1"/><circle cx="17.5" cy="20.5" r="1.1"/></svg><span class="dot">0</span></a>
+      <button class="ico burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<nav class="purelane-rail rail" id="rail" aria-label="Section progress">
+  <a href="#top" class="on" aria-label="Hero"></a>
+  <a href="#ingredients" aria-label="Ingredients"></a>
+  <a href="#how" aria-label="How it works"></a>
+  <a href="#proof" aria-label="Proof"></a>
+  <a href="#bundles" aria-label="Bundles"></a>
+  <a href="#shop" aria-label="Shop"></a>
+  <a href="#reviews" aria-label="Reviews"></a>
+</nav>
+
+<!-- ── MAIN CONTENT ───────────────────────────────────────────────── -->
+<main>
+
+<!-- 1. HERO (#top) -->
+<section class="purelane-hero hero" id="top" data-scene="1">
+  <div class="purelane-wrap purelane-hero-grid hero-grid">
+    <div class="purelane-badges badges purelane-glass-2" aria-label="Product promises">
+      <div class="purelane-badge badge">
+        <span class="purelane-bi bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg></span>
+        <span>Plant<br>powered</span>
+      </div>
+      <div class="purelane-badge badge">
+        <span class="purelane-bi bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg></span>
+        <span>Safe for<br>kids &amp; pets</span>
+      </div>
+      <div class="purelane-badge badge">
+        <span class="purelane-bi bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M6.4 17.6 17.6 6.4"/></svg></span>
+        <span>Zero harsh<br>chemicals</span>
+      </div>
+    </div>
+
+    <div class="purelane-hero-copy hero-copy">
+      <h1 class="purelane-d1 d1 rv in">Clean<br>That<br><span class="purelane-lime lime">Lasts</span></h1>
+      <div class="purelane-rule rule rv rv-d1">
+        <i></i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+        <i></i>
+      </div>
+      <p class="purelane-lede lede rv rv-d2">Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.</p>
+      <div class="purelane-hero-cta hero-cta rv rv-d3">
+        <a class="purelane-btn btn purelane-btn-primary btn-primary" href="#shop">Shop now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a>
+        <a class="purelane-btn btn purelane-btn-ghost btn-ghost" href="#how">How it works</a>
+      </div>
+      <div class="purelane-badgestrip badgestrip rv rv-d4">
+        <div class="purelane-glass-2 glass-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>Plant<br>powered</div>
+        <div class="purelane-glass-2 glass-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg>Safe for<br>kids &amp; pets</div>
+        <div class="purelane-glass-2 glass-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M6.4 17.6 17.6 6.4"/></svg>Zero harsh<br>chemicals</div>
+      </div>
+    </div>
+
+    <div class="purelane-hero-prod hero-prod" id="heroProd">
+      <div class="purelane-hstage hstage" id="hstage">
+        <div class="purelane-hslide hslide hs1 on" data-n="1">
+          <span class="purelane-hp hp p-kbtl a d1" role="img" aria-label="Purelane spray bottle tall"></span>
+          <div class="purelane-glass-2 glass-2 purelane-ptag ptag"><span class="lbl">Single bottle</span><span class="val"><strong>₹200</strong><s>₹299</s></span><span class="cut">33% off</span></div>
+        </div>
+        <div class="purelane-hslide hslide hs2" data-n="2">
+          <span class="purelane-hp hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner bottle"></span>
+          <span class="purelane-hp hp p-kbtl b d2" role="img" aria-label="Purelane kitchen cleaner bottle"></span>
+          <div class="purelane-glass-2 glass-2 purelane-ptag ptag"><span class="lbl">Any 2 products</span><span class="val"><strong>₹349</strong><s>₹598</s></span><span class="cut">Save ₹249</span></div>
+        </div>
+        <div class="purelane-hslide hslide hs3" data-n="3">
+          <span class="purelane-hp hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner bottle"></span>
+          <span class="purelane-hp hp p-mbtl b d2" role="img" aria-label="Purelane metal cleaner pump bottle"></span>
+          <span class="purelane-hp hp p-kbtl c d3" role="img" aria-label="Purelane kitchen cleaner bottle"></span>
+          <div class="purelane-glass-2 glass-2 purelane-ptag ptag"><span class="lbl">Any 3 products</span><span class="val"><strong>₹499</strong><s>₹897</s></span><span class="cut">Save ₹398</span></div>
+        </div>
+      </div>
+      <div class="purelane-hdots hdots" id="hdots">
+        <button type="button" class="on" aria-label="Show 1 product"></button>
+        <button type="button" aria-label="Show 2 products"></button>
+        <button type="button" aria-label="Show 3 products"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. REVIEWS MARQUEE (#reviews) -->
+<section class="purelane-sec sec purelane-revband revband" id="reviews" data-scene="1">
+  <div class="purelane-wrap"><div class="purelane-revhead revhead rv"><span class="purelane-kicker">That's what they said</span><span class="purelane-agg agg"><span class="purelane-st st">★★★★★</span><b>4.8</b> from 8,000+ reviews</span><span class="purelane-agg agg">Loved by <b>12 lakh+</b> homes</span></div></div>
+  <div class="purelane-revrail revrail rv" aria-label="Customer reviews">
+    <div class="purelane-revtrack revtrack">
+      <article class="purelane-glass-2 glass-2 purelane-rcard rcard"><div class="purelane-st st">★★★★★</div><h5>Works like a charm</h5><p>Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.</p><div class="purelane-who who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><b>Anita</b><span>· Laundry detergent</span></div></article>
+      <article class="purelane-glass-2 glass-2 purelane-rcard rcard"><div class="purelane-st st">★★★★★</div><h5>Best dishwash ever</h5><p>Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.</p><div class="purelane-who who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><b>Priya</b><span>· Dishwash gel</span></div></article>
+      <article class="purelane-glass-2 glass-2 purelane-rcard rcard"><div class="purelane-st st">★★★★★</div><h5>Great product, great packaging</h5><p>Very soft on hands with a lovely fragrance, and it feels good to be using far less plastic.</p><div class="purelane-who who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><b>Sunita</b><span>· Liquid handwash</span></div></article>
+      <article class="purelane-glass-2 glass-2 purelane-rcard rcard"><div class="purelane-st st">★★★★★</div><h5>Dog friendly</h5><p>We switched because chemical floor cleaners were setting off my dog's allergies. No reactions since.</p><div class="purelane-who who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><b>Rohit S.</b><span>· Floor cleaner</span></div></article>
+      <article class="purelane-glass-2 glass-2 purelane-rcard rcard"><div class="purelane-st st">★★★★★</div><h5>Sparkling taps again</h5><p>Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.</p><div class="purelane-who who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><b>Verified buyer</b><span>· Tap cleaner</span></div></article>
+      <!-- Duplicated for loop -->
+      <article class="purelane-glass-2 glass-2 purelane-rcard rcard"><div class="purelane-st st">★★★★★</div><h5>Works like a charm</h5><p>Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.</p><div class="purelane-who who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><b>Anita</b><span>· Laundry detergent</span></div></article>
+      <article class="purelane-glass-2 glass-2 purelane-rcard rcard"><div class="purelane-st st">★★★★★</div><h5>Best dishwash ever</h5><p>Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.</p><div class="purelane-who who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><b>Priya</b><span>· Dishwash gel</span></div></article>
+      <article class="purelane-glass-2 glass-2 purelane-rcard rcard"><div class="purelane-st st">★★★★★</div><h5>Sparkling taps again</h5><p>Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.</p><div class="purelane-who who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><b>Verified buyer</b><span>· Tap cleaner</span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 3. INGREDIENTS (#ingredients) FIRST -->
+<section class="purelane-sec sec" id="ingredients" data-scene="2">
+  <div class="purelane-wrap">
+    <div class="purelane-glass glass purelane-sec-pad sec-pad rv">
+      <div class="purelane-panel-head panel-head">
+        <h2 class="purelane-d2 d2">Sourced from nature</h2>
+        <div class="purelane-rule rule"><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><i></i></div>
+      </div>
+      <div class="purelane-ing ing">
+        <div class="purelane-ing-i ing-i"><div class="art"><svg viewBox="0 0 100 100" fill="none" stroke="#ece6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="62" r="25"/><path d="M31 53c9-6 29-6 38 0" stroke="#f0a03c"/><path d="M41 63c4 8 14 8 18 0" opacity=".55"/><path d="M50 37V25"/><path d="M50 27C42 18 30 16 21 21c5 10 17 13 29 6Z" stroke="#f0a03c"/><path d="M50 27c8-9 20-11 29-6-5 10-17 13-29 6Z" stroke="#f0a03c"/></svg></div><h4>Coconut</h4><p>Plant-derived cleansers that lift grease</p></div>
+        <div class="purelane-ing-i ing-i"><div class="art"><svg viewBox="0 0 100 100" fill="none" stroke="#ece6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="45" cy="58" r="23"/><path d="M45 35v46M22 58h46" opacity=".4"/><path d="M29 42 61 74M61 42 29 74" opacity=".26"/><path d="M62 28c13-1 20 10 15 20-4 8-15 9-19 2" stroke="#f0a03c"/><path d="M45 34c-3-8 2-15 10-16 1 9-3 15-10 16Z" stroke="#f0a03c"/></svg></div><h4>Orange peel</h4><p>Natural degreaser and fresh citrus lift</p></div>
+        <div class="purelane-ing-i ing-i"><div class="art"><svg viewBox="0 0 100 100" fill="none" stroke="#ece6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="36" cy="66" r="16"/><circle cx="64" cy="69" r="14"/><circle cx="50" cy="43" r="14"/><path d="M50 29V17"/><path d="M50 21c-8-8-18-8-23-2 7 8 17 10 23 2Z" stroke="#f0a03c"/><path d="M31 60a5 5 0 0 1 4-4" opacity=".6"/><path d="M46 38a5 5 0 0 1 4-4" opacity=".6"/></svg></div><h4>Soap nut</h4><p>A traditional plant foaming agent</p></div>
+        <div class="purelane-ing-i ing-i"><div class="art"><svg viewBox="0 0 100 100" fill="none" stroke="#ece6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 82C36 66 58 44 82 20" stroke="#f0a03c"/><path d="M27 73c-6-7-4-15 3-18 4 7 3 14-3 18Z"/><path d="M31 69c8-4 15 0 16 8-8 2-14-1-16-8Z"/><path d="M41 59c-6-7-4-16 3-19 4 7 3 15-3 19Z"/><path d="M45 55c9-4 16 0 17 8-8 2-15-1-17-8Z"/><path d="M56 44c-6-7-4-16 3-19 4 7 3 15-3 19Z"/><path d="M60 40c9-4 16 0 17 8-8 2-15-1-17-8Z"/><path d="M70 30c-5-7-3-15 4-18 3 7 2 14-4 18Z"/></svg></div><h4>Neem</h4><p>Time-tested antibacterial from the tree</p></div>
+        <div class="purelane-ing-i ing-i"><div class="art"><svg viewBox="0 0 100 100" fill="none"><g fill="#ece6f7" opacity=".88"><path d="M50 88C44 62 39 42 24 15c15 27 22 47 29 73Z"/><path d="M52 88C50 60 50 39 44 9c11 29 13 50 12 79Z"/><path d="M54 88C56 60 60 40 74 13c-11 28-15 48-16 75Z"/><path d="M56 88C60 64 68 48 86 27c-14 22-21 38-26 61Z"/><path d="M48 88C44 66 36 50 18 30c14 21 22 36 27 58Z"/></g><path d="M50 88h6" stroke="#f0a03c" stroke-width="2.4" stroke-linecap="round"/></svg></div><h4>Lemongrass</h4><p>Clean fragrance with nothing synthetic</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PILLARS / HOW IT WORKS (#how) SECOND -->
+<section class="purelane-sec" id="how" data-scene="2">
+  <div class="purelane-wrap">
+    <div class="purelane-pillars pillars">
+      <article class="purelane-glass purelane-pillar pillar rv">
+        <span class="purelane-pi pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8.5" r="3.2"/><circle cx="16.4" cy="6.6" r="2.2"/><circle cx="15" cy="13" r="2.8"/><circle cx="8.6" cy="15.6" r="2.1"/><path d="M4 21h16"/></svg></span>
+        <h3 class="purelane-d3">Less scrubbing</h3>
+        <p class="purelane-body-s">A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.</p>
+        <a class="purelane-btn purelane-btn-ghost purelane-btn-sm" href="#shop">Learn more</a>
+      </article>
+      <article class="purelane-glass purelane-pillar pillar rv rv-d2">
+        <span class="purelane-pi pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg></span>
+        <h3 class="purelane-d3">Clean ingredients</h3>
+        <p class="purelane-body-s">No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food.</p>
+        <a class="purelane-btn purelane-btn-ghost purelane-btn-sm" href="#ingredients">Learn more</a>
+      </article>
+      <article class="purelane-glass purelane-pillar pillar rv rv-d3">
+        <span class="purelane-pi pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/></svg></span>
+        <h3 class="purelane-d3">Safe around everyone</h3>
+        <p class="purelane-body-s">Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day.</p>
+        <a class="purelane-btn purelane-btn-ghost purelane-btn-sm" href="#proof">Learn more</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PROOF + ROTATOR (#proof) -->
+<section class="purelane-sec sec" id="proof" data-scene="3">
+  <div class="purelane-wrap">
+    <div class="purelane-glass glass purelane-sec-pad sec-pad rv">
+      <div class="purelane-proof proof">
+        <div class="proof-l">
+          <span class="purelane-kicker">Why it works</span>
+          <h2 class="purelane-d2 d2" style="margin-top:12px">Tough on grime.<br>Gentle on everything else.</h2>
+          <p class="purelane-body-s body-s" style="max-width:40ch">Every formula is built on plant-derived cleansers and essential oils. It behaves exactly like the cleaner you are used to, minus the things you never signed up for.</p>
+          <a class="purelane-btn btn purelane-btn-primary btn-primary" href="#ingredients" style="margin-top:22px">See the ingredient list <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a>
+        </div>
+        <div class="purelane-glass-2 glass-2 purelane-rot rot" id="rot">
+          <div class="frame">
+            <span class="purelane-pimg pimg p-kitchen on" role="img" data-name="Kitchen cleaner" data-note="Foam lifts grease, no scrubbing"></span>
+            <span class="purelane-pimg pimg p-tap" role="img" data-name="Tap &amp; limescale" data-note="Melts hard water stains"></span>
+            <span class="purelane-pimg pimg p-laundry" role="img" data-name="Laundry detergent" data-note="Tough on odour, soft on fabric"></span>
+            <span class="purelane-pimg pimg p-toilet" role="img" data-name="Toilet cleaner" data-note="Kills 99.9% of germs"></span>
+            <span class="purelane-pimg pimg p-floor" role="img" data-name="Floor cleaner" data-note="Neem powered, pet safe"></span>
+            <span class="purelane-pimg pimg p-dish" role="img" data-name="Dishwash gel" data-note="Cuts grease, kind to hands"></span>
+          </div>
+          <div class="cap"><b>Kitchen cleaner</b><span>Foam lifts grease, no scrubbing</span></div>
+          <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="purelane-glass-2 glass-2 stats" style="margin-top:20px">
+        <div class="stat"><div class="ring">99.9%</div><h5>Germ kill</h5><p>Tested against germs and bacteria</p></div>
+        <div class="stat"><div class="ring">0%</div><h5>Sulphates</h5><p>No SLS, chlorine or parabens</p></div>
+        <div class="stat"><div class="ring">100%</div><h5>Plant based</h5><p>Cleansers derived from plants</p></div>
+        <div class="stat"><div class="ring">4.8</div><h5>Rated</h5><p>Across 8,000+ verified reviews</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. COMBOS (#combos) -->
+<section class="purelane-sec" id="combos" data-scene="3">
+  <div class="purelane-wrap">
+    <div class="purelane-panel-head rv"><span class="purelane-kicker">Pre-built to save you money</span><h2 class="purelane-d2" style="margin-top:12px">Best selling combos</h2></div>
+    <div class="purelane-comborail comborail rv">
+      <article class="purelane-glass combo">
+        <div class="tray"><span class="save">You save ₹398</span><span class="flag">Most popular</span>
+          <div class="stack">
+            <span class="it"><span class="purelane-pimg p-kitchen" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Cuts grease instantly</span></span>
+            <span class="plus">+</span>
+            <span class="it"><span class="purelane-pimg p-dish" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Squeaky clean dishes</span></span>
+            <span class="plus">+</span>
+            <span class="it"><span class="purelane-pimg p-tap" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Melts limescale</span></span>
+          </div>
+        </div>
+        <div class="body"><h3>Kitchen essentials</h3><div class="cnt">3 products</div><p class="inc">Foaming Kitchen Cleaner, Dishwash Gel &amp; Tap Cleaner.</p><div class="prow"><strong>₹499</strong><s>₹897</s><em>Save ₹398</em></div><div class="fine">Inclusive of all taxes · COD available</div><a class="purelane-btn purelane-btn-ghost" href="#bundles">Shop bundle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a></div>
+      </article>
+      <article class="purelane-glass combo hero-combo">
+        <div class="tray"><span class="save">Biggest saving</span><span class="flag">Best value</span>
+          <div class="stack">
+            <span class="it"><span class="purelane-pimg p-kitchen" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Cuts grease instantly</span></span>
+            <span class="plus">+</span>
+            <span class="it"><span class="purelane-pimg p-floor" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Kills 99.9% germs</span></span>
+            <span class="plus">+</span>
+            <span class="it"><span class="purelane-pimg p-handwash" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Gentle on hands</span></span>
+          </div>
+        </div>
+        <div class="body"><h3>Complete home bundle</h3><div class="cnt">5 products</div><p class="inc">Kitchen Cleaner, Laundry, Floor Cleaner, Toilet Cleaner &amp; Handwash.</p><div class="prow"><strong>₹799</strong><s>₹1,495</s><em>Save ₹696</em></div><div class="fine">Inclusive of all taxes · COD available</div><a class="purelane-btn purelane-btn-primary" href="#bundles">Shop bundle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a></div>
+      </article>
+      <article class="purelane-glass combo">
+        <div class="tray"><span class="save">You save ₹448</span>
+          <div class="stack">
+            <span class="it"><span class="purelane-pimg p-laundry" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Removes tough stains</span></span>
+            <span class="plus">+</span>
+            <span class="it"><span class="purelane-pimg p-wm" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Deep-cleans machine</span></span>
+          </div>
+        </div>
+        <div class="body"><h3>Laundry care bundle</h3><div class="cnt">3 products</div><p class="inc">Laundry Detergent, Fabric Conditioner &amp; Machine Cleaner Powder.</p><div class="prow"><strong>₹499</strong><s>₹947</s><em>Save ₹448</em></div><div class="fine">Inclusive of all taxes · COD available</div><a class="purelane-btn purelane-btn-ghost" href="#bundles">Shop bundle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a></div>
+      </article>
+      <article class="purelane-glass combo">
+        <div class="tray"><span class="save">You save ₹398</span>
+          <div class="stack">
+            <span class="it"><span class="purelane-pimg p-toilet" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Kills 99.9% germs</span></span>
+            <span class="plus">+</span>
+            <span class="it"><span class="purelane-pimg p-tap" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Melts hard water stains</span></span>
+            <span class="plus">+</span>
+            <span class="it"><span class="purelane-pimg p-eraser" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Scrubs away soap scum</span></span>
+          </div>
+        </div>
+        <div class="body"><h3>Bathroom deep clean</h3><div class="cnt">3 products</div><p class="inc">Toilet Cleaner, Tap Cleaner &amp; Magic Eraser. A complete bathroom refresh in one box.</p><div class="prow"><strong>₹499</strong><s>₹897</s><em>Save ₹398</em></div><div class="fine">Inclusive of all taxes · COD available</div><a class="purelane-btn purelane-btn-ghost" href="#bundles">Shop bundle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a></div>
+      </article>
+      <article class="purelane-glass combo">
+        <div class="tray"><span class="save">You save ₹249</span>
+          <div class="stack">
+            <span class="it"><span class="purelane-pimg p-tap" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Melts hard water stains</span></span>
+            <span class="plus">+</span>
+            <span class="it"><span class="purelane-pimg p-toilet" style="height:66px;width:auto;margin:0 auto 8px"></span><span>Fights limescale in bowl</span></span>
+          </div>
+        </div>
+        <div class="body"><h3>Hard water solution kit</h3><div class="cnt">2 products</div><p class="inc">Tap Cleaner &amp; Toilet Cleaner. A quick, focused fix for hard water stains across the home.</p><div class="prow"><strong>₹349</strong><s>₹598</s><em>Save ₹249</em></div><div class="fine">Inclusive of all taxes · COD available</div><a class="purelane-btn purelane-btn-ghost" href="#bundles">Shop bundle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a></div>
+      </article>
+    </div>
+    <div class="swipecue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>Swipe for more combos</div>
+    <p class="railnote">Tapping &quot;Shop bundle&quot; opens the bundle picker with these products already added. You can still swap anything before you pay.</p>
+  </div>
+</section>
+
+<!-- 7. BESTSELLERS (#shop) — LOCAL MOCK VERIFICATION
+     Each card simulates a real Shopify product object.
+     Cards are labelled with their edge-case role for acceptance testing.
+     Production Liquid uses real product.* objects — this is test_preview.html only.
+-->
+<section class="purelane-sec sec" id="shop" data-scene="3">
+  <div class="purelane-wrap">
+    <div class="purelane-panel-head rv">
+      <span class="purelane-kicker">Bestsellers</span>
+      <h2 class="purelane-d2" style="margin-top:12px">Loved by 30,000 homes</h2>
+      <div class="purelane-rule rule" style="margin:14px auto 0"><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><i></i></div>
+    </div>
+    <div class="purelane-shelf shelf">
+
+      <!-- MOCK #1 — Normal product, discounted, has image (SVG vector) -->
+      <article class="purelane-glass glass purelane-card card rv" data-mock-product-id="8001" data-testid="product-normal-discounted">
+        <a href="/products/tap-cleaner-limescale-remover" class="purelane-card-shot shot" aria-label="Tap cleaner &amp; limescale remover">
+          <span class="purelane-card-pill pill">Best seller</span>
+          <span class="purelane-pimg pimg p-tap" role="img" aria-label="Tap cleaner bottle"></span>
+        </a>
+        <h4 class="purelane-card-title" title="Tap cleaner &amp; limescale remover">
+          <a href="/products/tap-cleaner-limescale-remover">Tap cleaner &amp; limescale remover</a>
+        </h4>
+        <div class="purelane-card-rate rate"><b>★ 4.8</b> · 237 reviews</div>
+        <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+        <form class="purelane-card-form" action="/cart/add" method="post">
+          <input type="hidden" name="id" value="45100010001">
+          <button type="submit" name="add" class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
+        </form>
+      </article>
+
+      <!-- MOCK #2 — Normal product, discounted, has image (SVG vector) -->
+      <article class="purelane-glass glass purelane-card card rv rv-d1" data-mock-product-id="8002" data-testid="product-normal">
+        <a href="/products/foaming-kitchen-cleaner-spray" class="purelane-card-shot shot" aria-label="Foaming kitchen cleaner spray">
+          <span class="purelane-card-pill pill">Best seller</span>
+          <span class="purelane-pimg pimg p-kitchen" role="img" aria-label="Kitchen cleaner bottle"></span>
+        </a>
+        <h4 class="purelane-card-title" title="Foaming kitchen cleaner spray">
+          <a href="/products/foaming-kitchen-cleaner-spray">Foaming kitchen cleaner spray</a>
+        </h4>
+        <div class="purelane-card-rate rate"><b>★ 4.8</b> · 254 reviews</div>
+        <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+        <form class="purelane-card-form" action="/cart/add" method="post">
+          <input type="hidden" name="id" value="45100010002">
+          <button type="submit" name="add" class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
+        </form>
+      </article>
+
+      <!-- MOCK #3 — Normal product, discounted, has image (SVG vector) -->
+      <article class="purelane-glass glass purelane-card card rv rv-d2" data-mock-product-id="8003" data-testid="product-normal">
+        <a href="/products/copper-bronze-brass-cleaner" class="purelane-card-shot shot" aria-label="Copper, bronze &amp; brass cleaner">
+          <span class="purelane-card-pill pill">Top rated</span>
+          <span class="purelane-pimg pimg p-metal" role="img" aria-label="Brass cleaner bottle"></span>
+        </a>
+        <h4 class="purelane-card-title" title="Copper, bronze &amp; brass cleaner">
+          <a href="/products/copper-bronze-brass-cleaner">Copper, bronze &amp; brass cleaner</a>
+        </h4>
+        <div class="purelane-card-rate rate"><b>★ 4.8</b> · 231 reviews</div>
+        <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+        <form class="purelane-card-form" action="/cart/add" method="post">
+          <input type="hidden" name="id" value="45100010003">
+          <button type="submit" name="add" class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
+        </form>
+      </article>
+
+      <!-- MOCK #4 — DISCOUNTED PRODUCT (biggest discount: 43% off — explicit savings showcase) -->
+      <article class="purelane-glass glass purelane-card card rv rv-d3" data-mock-product-id="8004" data-testid="product-discounted">
+        <a href="/products/washing-machine-cleaner-descaler" class="purelane-card-shot shot" aria-label="Washing machine cleaner &amp; descaler">
+          <span class="purelane-card-pill pill">43% off</span>
+          <span class="purelane-pimg pimg p-wm" role="img" aria-label="Washing machine cleaner pack"></span>
+        </a>
+        <h4 class="purelane-card-title" title="Washing machine cleaner &amp; descaler">
+          <a href="/products/washing-machine-cleaner-descaler">Washing machine cleaner &amp; descaler</a>
+        </h4>
+        <div class="purelane-card-rate rate"><b>★ 4.8</b> · 183 reviews</div>
+        <div class="purelane-card-pr pr"><strong>₹170</strong><s>₹299</s><em>43% off</em></div>
+        <form class="purelane-card-form" action="/cart/add" method="post">
+          <input type="hidden" name="id" value="45100010004">
+          <button type="submit" name="add" class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
+        </form>
+      </article>
+
+      <!-- MOCK #5 — SOLD-OUT PRODUCT (product.available == false)
+           Acceptance test: sold-out badge, disabled button, dimmed opacity -->
+      <article class="purelane-glass glass purelane-card card rv" data-mock-product-id="8005" data-testid="product-sold-out" data-mock-available="false">
+        <a href="/products/herbal-neem-floor-cleaner" class="purelane-card-shot shot" aria-label="Herbal neem floor cleaner — Sold Out">
+          <span class="purelane-card-pill pill sold-out">Sold Out</span>
+          <span class="purelane-pimg pimg p-floor" role="img" aria-label="Floor cleaner bottle"></span>
+        </a>
+        <h4 class="purelane-card-title" title="Herbal neem floor cleaner">
+          <a href="/products/herbal-neem-floor-cleaner">Herbal neem floor cleaner</a>
+        </h4>
+        <div class="purelane-card-rate rate"><b>★ 4.9</b> · 312 reviews</div>
+        <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+        <form class="purelane-card-form" action="/cart/add" method="post">
+          <input type="hidden" name="id" value="45100010005">
+          <button type="submit" name="add" class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn disabled" disabled="disabled" aria-disabled="true">Sold Out</button>
+        </form>
+      </article>
+
+      <!-- MOCK #6 — NO IMAGE PRODUCT (product.featured_image == nil → SVG vector fallback)
+           Acceptance test: card renders with fallback art, no broken img tag, card height intact -->
+      <article class="purelane-glass glass purelane-card card rv rv-d1" data-mock-product-id="8006" data-testid="product-no-image" data-mock-has-image="false">
+        <a href="/products/organic-dishwash-liquid-gel" class="purelane-card-shot shot" aria-label="Organic dishwash liquid gel — vector fallback art shown (no product image)">
+          <!-- No <img> tag — simulates product.featured_image == nil.
+               Liquid renders <span class="purelane-pimg pimg p-dish"> as the SVG fallback. -->
+          <span class="purelane-card-pill pill">Gentle</span>
+          <span class="purelane-pimg pimg p-dish" role="img" aria-label="Dishwash gel bottle — SVG fallback art"></span>
+        </a>
+        <h4 class="purelane-card-title" title="Organic dishwash liquid gel">
+          <a href="/products/organic-dishwash-liquid-gel">Organic dishwash liquid gel</a>
+        </h4>
+        <div class="purelane-card-rate rate"><b>★ 4.8</b> · 198 reviews</div>
+        <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+        <form class="purelane-card-form" action="/cart/add" method="post">
+          <input type="hidden" name="id" value="45100010006">
+          <button type="submit" name="add" class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
+        </form>
+      </article>
+
+      <!-- MOCK #7 — VERY LONG TITLE (>100 characters — 112 chars)
+           Acceptance test: title must clamp to 2 lines, card height consistent, full title in tooltip -->
+      <article class="purelane-glass glass purelane-card card rv rv-d2" data-mock-product-id="8007" data-testid="product-long-title">
+        <a href="/products/plant-based-laundry-liquid-detergent-concentrated" class="purelane-card-shot shot" aria-label="Plant-based laundry liquid detergent, ultra-concentrated, hypoallergenic, 2× strength, safe for sensitive skin">
+          <span class="purelane-card-pill pill">New</span>
+          <span class="purelane-pimg pimg p-laundry" role="img" aria-label="Laundry detergent bottle"></span>
+        </a>
+        <h4 class="purelane-card-title" title="Plant-based laundry liquid detergent, ultra-concentrated, hypoallergenic, 2× strength, safe for sensitive skin">
+          <a href="/products/plant-based-laundry-liquid-detergent-concentrated">Plant-based laundry liquid detergent, ultra-concentrated, hypoallergenic, 2× strength, safe for sensitive skin</a>
+        </h4>
+        <div class="purelane-card-rate rate"><b>★ 4.7</b> · 145 reviews</div>
+        <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+        <form class="purelane-card-form" action="/cart/add" method="post">
+          <input type="hidden" name="id" value="45100010007">
+          <button type="submit" name="add" class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
+        </form>
+      </article>
+
+      <!-- MOCK #8 — Normal product, completes 8-product grid -->
+      <article class="purelane-glass glass purelane-card card rv rv-d3" data-mock-product-id="8008" data-testid="product-normal">
+        <a href="/products/non-toxic-toilet-bowl-cleaner" class="purelane-card-shot shot" aria-label="Non-toxic toilet bowl cleaner">
+          <span class="purelane-card-pill pill">Disinfect</span>
+          <span class="purelane-pimg pimg p-toilet" role="img" aria-label="Toilet cleaner bottle"></span>
+        </a>
+        <h4 class="purelane-card-title" title="Non-toxic toilet bowl cleaner">
+          <a href="/products/non-toxic-toilet-bowl-cleaner">Non-toxic toilet bowl cleaner</a>
+        </h4>
+        <div class="purelane-card-rate rate"><b>★ 4.8</b> · 267 reviews</div>
+        <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+        <form class="purelane-card-form" action="/cart/add" method="post">
+          <input type="hidden" name="id" value="45100010008">
+          <button type="submit" name="add" class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
+        </form>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 8. FULL RANGE (#range) -->
+<section class="purelane-sec" id="range" data-scene="3">
+  <div class="purelane-wrap">
+    <div class="purelane-glass range rv">
+      <div class="range-head"><div><span class="purelane-kicker">The full range</span><h2 class="purelane-d2" style="margin-top:10px">Every room, one shelf</h2></div><p class="purelane-body-s" style="max-width:34ch">Floors, taps, kitchen, laundry and hands — all in plant-based formulas.</p></div>
+      <div class="stripwrap"><div class="rangerow">
+        <span class="purelane-pimg p-floor" style="height:132px;width:auto"></span>
+        <span class="purelane-pimg p-tap" style="height:118px;width:auto"></span>
+        <span class="purelane-pimg p-kitchen" style="height:132px;width:auto"></span>
+        <span class="purelane-pimg p-toilet" style="height:118px;width:auto"></span>
+        <span class="purelane-pimg p-laundry" style="height:132px;width:auto"></span>
+        <span class="purelane-pimg p-dish" style="height:118px;width:auto"></span>
+        <span class="purelane-pimg p-metal" style="height:132px;width:auto"></span>
+        <span class="purelane-pimg p-wm" style="height:118px;width:auto"></span>
+        <span class="purelane-pimg p-handwash" style="height:132px;width:auto"></span>
+        <span class="purelane-pimg p-eraser" style="height:118px;width:auto"></span>
+      </div></div>
+      <p class="striphint">Swipe to see the full shelf</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. BUNDLES (#bundles) -->
+<section class="purelane-sec sec" id="bundles" data-scene="3">
+  <div class="purelane-wrap">
+    <div class="purelane-glass glass purelane-sec-pad sec-pad rv" style="margin-bottom:16px"><div class="purelane-panel-head panel-head" style="margin-bottom:0"><span class="purelane-kicker">Build your bundle</span><h2 class="purelane-d2" style="margin-top:12px">One box. Every room.</h2><p class="purelane-lede" style="margin:0 auto">Mix and match across kitchen, laundry, home and skin.</p></div></div>
+    <div class="purelane-tiers tiers">
+      <article class="purelane-glass glass purelane-tier tier rv"><span class="purelane-tag tag">Starter</span><div class="tierpix"><span class="purelane-pimg pimg p-combo2" style="height:62px;width:auto"></span></div><div class="purelane-qty qty">2<small>Products</small></div><div class="purelane-price price">₹349 <s>₹598</s></div><p class="purelane-body-s" style="font-size:12px">Flat ₹174 per product</p><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Pick any two products</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Free shipping across India</li></ul><a class="purelane-btn btn purelane-btn-ghost btn-ghost" href="#shop">Build this box</a></article>
+      <article class="purelane-glass glass purelane-tier tier best rv rv-d2"><span class="purelane-tag tag">Most popular</span><div class="tierpix"><span class="purelane-pimg pimg p-kitchen" style="height:62px;width:auto"></span><span class="purelane-pimg pimg p-tap" style="height:62px;width:auto"></span><span class="purelane-pimg pimg p-dish" style="height:62px;width:auto"></span></div><div class="purelane-qty qty">3<small>Products</small></div><div class="purelane-price price">₹499 <s>₹897</s></div><p class="purelane-body-s" style="font-size:12px">Flat ₹166 per product</p><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Pick any three products</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Covers kitchen and laundry</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Free shipping across India</li></ul><a class="purelane-btn btn purelane-btn-primary btn-primary" href="#shop">Build this box <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a></article>
+      <article class="purelane-glass glass purelane-tier tier rv rv-d3"><span class="purelane-tag tag">Whole home</span><div class="tierpix five"><span class="purelane-pimg pimg p-kitchen" style="height:54px;width:auto"></span><span class="purelane-pimg pimg p-tap" style="height:54px;width:auto"></span><span class="purelane-pimg pimg p-floor" style="height:54px;width:auto"></span><span class="purelane-pimg pimg p-toilet" style="height:54px;width:auto"></span><span class="purelane-pimg pimg p-laundry" style="height:54px;width:auto"></span></div><div class="purelane-qty qty">5<small>Products</small></div><div class="purelane-price price">₹799 <s>₹1495</s></div><p class="purelane-body-s" style="font-size:12px">Flat ₹160 per product</p><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Pick any five products</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Every room in one order</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Free shipping across India</li></ul><a class="purelane-btn btn purelane-btn-ghost btn-ghost" href="#shop">Build this box</a></article>
+    </div>
+  </div>
+</section>
+
+<!-- 10. WHY BUNDLES (#whybundles) -->
+<section class="purelane-sec" id="whybundles" data-scene="4">
+  <div class="purelane-wrap">
+    <div class="purelane-glass purelane-sec-pad rv">
+      <div class="purelane-panel-head"><span class="purelane-kicker">The smarter way to shop</span><h2 class="purelane-d2" style="margin-top:12px">Why bundles beat buying single</h2></div>
+      <div class="purelane-wb wb">
+        <div class="wb-i"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M16.5 7.2C15.6 6 14 5.4 12 5.4c-2.4 0-4 1.1-4 2.9 0 2 1.7 2.7 4.2 3.3 2.7.6 4.3 1.4 4.3 3.4 0 1.9-1.7 3.1-4.5 3.1-2.2 0-3.8-.7-4.8-2"/></svg></span><h4>Save up to 45%</h4><p>Versus buying the same products separately</p></div>
+        <div class="wb-i"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3.4"/><path d="m8.4 12.2 2.4 2.4 4.8-5"/></svg></span><h4>One flat price</h4><p>No calculators, no comparing carts</p></div>
+        <div class="wb-i"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.6 2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L3.6 9.7l5.8-.8Z"/></svg></span><h4>Curated by experts</h4><p>Products picked to work well together</p></div>
+        <div class="wb-i"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 16.4V7.2h10.2v9.2"/><path d="M12.8 10.4h4l3.6 3.2v2.8h-7.6"/><circle cx="6.6" cy="18" r="1.9"/><circle cx="16.6" cy="18" r="1.9"/></svg></span><h4>Free shipping always</h4><p>Included on every bundle, all India</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. CATEGORIES (#categories) -->
+<section class="purelane-sec" id="categories" data-scene="4">
+  <div class="purelane-wrap">
+    <div class="purelane-panel-head rv"><span class="purelane-kicker">Bundle categories</span><h2 class="purelane-d2" style="margin-top:12px">Find the right bundle for you</h2></div>
+    <div class="purelane-cats cats">
+      <a class="purelane-glass cat rv" href="#combos"><span class="ph"><span class="purelane-pimg p-kitchen" style="height:176px;width:auto"></span></span><span class="txt"><h4>Kitchen bundle</h4><p>Grease, dishes &amp; more</p></span></a>
+      <a class="purelane-glass cat rv rv-d1" href="#combos"><span class="ph"><span class="purelane-pimg p-toilet" style="height:176px;width:auto"></span></span><span class="txt"><h4>Bathroom bundle</h4><p>Deep clean &amp; disinfect</p></span></a>
+      <a class="purelane-glass cat rv rv-d2" href="#combos"><span class="ph"><span class="purelane-pimg p-laundry" style="height:176px;width:auto"></span></span><span class="txt"><h4>Laundry bundle</h4><p>Softer, fresher wash</p></span></a>
+      <a class="purelane-glass cat rv rv-d3" href="#combos"><span class="ph"><span class="purelane-pimg p-tap" style="height:176px;width:auto"></span></span><span class="txt"><h4>Hard water bundle</h4><p>Melt away limescale</p></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 12. TRUST + SIGNUP -->
+<section class="purelane-sec" data-scene="4">
+  <div class="purelane-wrap">
+    <div class="purelane-glass purelane-trust trust rv">
+      <div class="trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><span>Plant derived<br>formulas</span></div>
+      <div class="trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/></svg><span>Safe for<br>kids &amp; pets</span></div>
+      <div class="trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M4 8 6.5 3h11L20 8M9.5 12h5"/></svg><span>Recyclable<br>packaging</span></div>
+      <div class="trust-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2M12 3.4c2.4 2.4 3.6 5.4 3.6 8.6S14.4 18.2 12 20.6c-2.4-2.4-3.6-5.4-3.6-8.6S9.6 5.8 12 3.4Z"/></svg><span>Made in<br>India</span></div>
+    </div>
+  </div>
+</section>
+<section class="purelane-sec" data-scene="4">
+  <div class="purelane-wrap">
+    <div class="purelane-glass purelane-signup signup rv">
+      <span class="purelane-kicker">Join the Purelane Club</span>
+      <h2 class="purelane-d2" style="margin-top:12px">Get ₹100 off your first bundle</h2>
+      <p class="purelane-lede" style="margin:0 auto">Plus first access to new launches and restocks.</p>
+      <form class="signup-form" onsubmit="return false">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" required>
+        <button class="purelane-btn purelane-btn-primary" type="submit">Get my ₹100 off</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer data-scene="4">
+  <div class="purelane-wrap">
+    <div class="fgrid">
+      <div class="fcol"><a class="brand" href="#top" style="margin-bottom:16px"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#b8701c"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/><path d="M12 21v-6"/></svg></span><span class="txt"><span class="n1">Purelane</span><span class="n2">Clean, simply</span></span></a><p style="max-width:30ch">Effective cleaning, powered by nature.</p></div>
+      <div class="fcol"><h5>Shop</h5><a href="#shop">Bestsellers</a><a href="#shop">Kitchen</a><a href="#shop">Laundry</a><a href="#bundles">Starter kits</a></div>
+      <div class="fcol"><h5>About</h5><a href="#how">How it works</a><a href="#ingredients">Sustainability</a><a href="#reviews">Reviews</a></div>
+      <div class="fcol"><h5>Get in touch</h5><a href="mailto:hello@purelane.com">hello@purelane.com</a><a href="tel:+919930123234">+91 9930 123 234</a></div>
+    </div>
+    <div class="fbot"><span>© 2026 Purelane Eco Products Private Limited</span><span>Privacy · Terms · Refunds · Contact</span></div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="purelane-sticky sticky"><span class="lbl"><b>Pick any 3, pay ₹499</b><span>Free shipping, always</span></span><a class="purelane-btn purelane-btn-primary purelane-btn-sm" href="#bundles">Build bundle</a></div>
+
+<script src="assets/purelane-theme.js"></script>
+</body>
+</html>

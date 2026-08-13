@@ -1,0 +1,20 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Purelane",
+    "theme_author": "Purelane Team",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://purelane.com/docs",
+    "theme_support_url": "https://purelane.com/support"
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      }
+    ]
+  }
+]

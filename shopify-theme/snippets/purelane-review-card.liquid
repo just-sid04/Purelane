@@ -1,0 +1,25 @@
+{% comment %}
+  Purelane Reusable Review Card Snippet
+  Accepts:
+  - rating: {Number/String} Star rating (e.g. 5)
+  - title: {String} Review title
+  - text: {String} Review body text
+  - author: {String} Reviewer name
+  - product_tag: {String} Tag or product name (e.g. "Laundry detergent")
+{% endcomment %}
+
+<article class="purelane-glass-2 glass-2 purelane-rcard rcard">
+  <div class="purelane-st st">
+    {%- assign star_num = rating | default: 5 | times: 1 -%}
+    {%- for i in (1..star_num) -%}★{%- endfor -%}
+  </div>
+  <h5>{{ title | default: 'Works like a charm' | escape }}</h5>
+  <p>{{ text | default: 'Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.' | escape }}</p>
+  <div class="purelane-who who">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+    <b>{{ author | default: 'Verified buyer' | escape }}</b>
+    {%- if product_tag != blank -%}
+      <span>&middot; {{ product_tag | escape }}</span>
+    {%- endif -%}
+  </div>
+</article>

@@ -1,0 +1,25 @@
+{
+  "general": {
+    "shop": "Shop",
+    "cart": "Cart",
+    "add_to_cart": "Add to cart",
+    "sold_out": "Sold out"
+  },
+  "sections": {
+    "hero": {
+      "title": "Clean That Lasts"
+    },
+    "reviews": {
+      "title": "That's what they said"
+    },
+    "ingredients": {
+      "title": "Sourced from nature"
+    },
+    "bestsellers": {
+      "title": "Loved by 30,000 homes"
+    },
+    "bundles": {
+      "title": "One box. Every room."
+    }
+  }
+}

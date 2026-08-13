@@ -1,0 +1,126 @@
+{% comment %}
+  Purelane Footer Section
+  Includes 4-item Trust Bar, Club Signup form, 4-column glassmorphic Footer, and mobile Sticky CTA Bar.
+{% endcomment %}
+
+<!-- TRUST BAR -->
+<section class="purelane-sec" data-scene="4">
+  <div class="purelane-wrap">
+    <div class="purelane-glass purelane-trust trust rv">
+      <div class="trust-i">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+        <span>Plant derived<br>formulas</span>
+      </div>
+      <div class="trust-i">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M4 8 6.5 3h11L20 8M9.5 12h5"/></svg>
+        <span>Recyclable<br>packaging</span>
+      </div>
+      <div class="trust-i">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/></svg>
+        <span>Safe for<br>kids &amp; pets</span>
+      </div>
+      <div class="trust-i">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2M12 3.4c2.4 2.4 3.6 5.4 3.6 8.6S14.4 18.2 12 20.6c-2.4-2.4-3.6-5.4-3.6-8.6S9.6 5.8 12 3.4Z"/></svg>
+        <span>Made in<br>India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP CLUB -->
+<section class="purelane-sec" data-scene="4">
+  <div class="purelane-wrap">
+    <div class="purelane-glass purelane-signup signup rv">
+      <span class="purelane-kicker">{{ section.settings.signup_kicker | default: 'Join the Purelane Club' | escape }}</span>
+      <h2 class="purelane-d2" style="margin-top:12px">{{ section.settings.signup_heading | default: 'Get ₹100 off your first bundle' | escape }}</h2>
+      <p class="purelane-lede" style="margin:0 auto">{{ section.settings.signup_subtext | default: 'Plus first access to new launches and restocks.' | escape }}</p>
+      {%- form 'customer', class: 'signup-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" placeholder="your@email.com" aria-label="Email address" required>
+        <button class="purelane-btn purelane-btn-primary" type="submit">Get my ₹100 off</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer data-scene="4">
+  <div class="purelane-wrap">
+    <div class="fgrid">
+      <div class="fcol">
+        <a class="brand" href="#top" style="margin-bottom:16px">
+          <span class="mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#b8701c"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/><path d="M12 21v-6"/></svg>
+          </span>
+          <span class="txt"><span class="n1">Purelane</span><span class="n2">Clean, simply</span></span>
+        </a>
+        <p style="max-width:30ch">Effective cleaning, powered by nature. Made for Indian homes since day one.</p>
+      </div>
+      <div class="fcol">
+        <h5>Shop</h5>
+        <a href="#shop">Bestsellers</a>
+        <a href="#shop">Kitchen</a>
+        <a href="#shop">Laundry</a>
+        <a href="#shop">Home</a>
+        <a href="#shop">Skin</a>
+        <a href="#bundles">Starter kits</a>
+      </div>
+      <div class="fcol">
+        <h5>About</h5>
+        <a href="#how">How it works</a>
+        <a href="#ingredients">Sustainability</a>
+        <a href="#proof">FAQs</a>
+        <a href="#voices">Reviews</a>
+      </div>
+      <div class="fcol">
+        <h5>Get in touch</h5>
+        <a href="mailto:hello@purelane.com">hello@purelane.com</a>
+        <a href="tel:+919930123234">+91 9930 123 234</a>
+        <p style="font-size:12px;color:rgba(236,230,247,.5)">Purelane Eco Products Pvt Ltd</p>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© {{ 'now' | date: '%Y' }} Purelane Eco Products Private Limited</span>
+      <span>Privacy · Terms · Refunds · Contact</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="purelane-sticky sticky">
+  <span class="lbl"><b>Pick any 3, pay ₹499</b><span>Free shipping, always</span></span>
+  <a class="purelane-btn purelane-btn-primary purelane-btn-sm" href="#bundles">Build bundle</a>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Footer & Club",
+  "tag": "section",
+  "class": "purelane-footer-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "signup_kicker",
+      "label": "Signup Kicker",
+      "default": "Join the Purelane Club"
+    },
+    {
+      "type": "text",
+      "id": "signup_heading",
+      "label": "Signup Heading",
+      "default": "Get ₹100 off your first bundle"
+    },
+    {
+      "type": "textarea",
+      "id": "signup_subtext",
+      "label": "Signup Subtext",
+      "default": "Plus first access to new launches and restocks."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Footer & Club"
+    }
+  ]
+}
+{% endschema %}

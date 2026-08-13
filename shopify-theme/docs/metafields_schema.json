@@ -1,0 +1,48 @@
+{
+  "product_metafields": [
+    {
+      "namespace": "custom",
+      "key": "rating_score",
+      "name": "Product Rating Score",
+      "description": "Decimal rating score displayed on product cards (e.g. 4.8)",
+      "type": "number_decimal",
+      "validations": [
+        {
+          "name": "min",
+          "value": "1.0"
+        },
+        {
+          "name": "max",
+          "value": "5.0"
+        }
+      ]
+    },
+    {
+      "namespace": "custom",
+      "key": "review_count",
+      "name": "Product Review Count",
+      "description": "Integer total review count displayed on product cards (e.g. 237)",
+      "type": "number_integer",
+      "validations": [
+        {
+          "name": "min",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "namespace": "custom",
+      "key": "subtitle",
+      "name": "Product Short Subtitle",
+      "description": "Short descriptive tag under title (e.g. 'Foaming kitchen cleaner spray')",
+      "type": "single_line_text_field"
+    },
+    {
+      "namespace": "custom",
+      "key": "badge_label",
+      "name": "Custom Product Badge Label",
+      "description": "Custom tag label shown on card shot (e.g. 'Best seller', 'Top rated', 'New')",
+      "type": "single_line_text_field"
+    }
+  ]
+}

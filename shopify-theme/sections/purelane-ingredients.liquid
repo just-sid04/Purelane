@@ -1,0 +1,145 @@
+{% comment %}
+  Purelane Ingredients Section
+  "Sourced from nature" showcase panel with 5 plant ingredient blocks, proof copy, product rotator, and 4-ring statistical proof bar.
+{% endcomment %}
+
+<section class="purelane-sec sec" id="ingredients" data-scene="2">
+  <div class="purelane-wrap wrap">
+    <div class="purelane-glass glass purelane-sec-pad sec-pad rv">
+      <div class="purelane-panel-head panel-head">
+        <h2 class="purelane-d2 d2">{{ section.settings.title | default: 'Sourced from nature' | escape }}</h2>
+        <div class="purelane-rule rule">
+          <i></i>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+          <i></i>
+        </div>
+      </div>
+
+      <div class="purelane-ing ing">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {% render 'purelane-ingredient-card',
+              title: block.settings.title,
+              text: block.settings.text,
+              image: block.settings.image
+            %}
+          {%- endfor -%}
+        {%- else -%}
+          {% render 'purelane-ingredient-card', title: 'Coconut', text: 'Plant-derived cleansers that lift grease' %}
+          {% render 'purelane-ingredient-card', title: 'Orange peel', text: 'Natural degreaser and fresh citrus lift' %}
+          {% render 'purelane-ingredient-card', title: 'Soap nut', text: 'A traditional plant foaming agent' %}
+          {% render 'purelane-ingredient-card', title: 'Neem', text: 'Time-tested antibacterial from the tree' %}
+          {% render 'purelane-ingredient-card', title: 'Lemongrass', text: 'Clean fragrance with nothing synthetic' %}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF & PRODUCT ROTATOR PANEL -->
+<section class="purelane-sec sec" id="proof" data-scene="3">
+  <div class="purelane-wrap wrap">
+    <div class="purelane-glass glass purelane-sec-pad sec-pad rv">
+      <div class="purelane-proof proof">
+        <div class="proof-l">
+          <span class="purelane-kicker kicker">Why it works</span>
+          <h2 class="purelane-d2 d2" style="margin-top:12px">Tough on grime.<br>Gentle on everything else.</h2>
+          <p class="purelane-body-s body-s" style="max-width:40ch">Every formula is built on plant-derived cleansers and essential oils. It behaves exactly like the cleaner you are used to, minus the things you never signed up for.</p>
+          <a class="purelane-btn btn purelane-btn-primary btn-primary" href="#ingredients">
+            See the ingredient list
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="purelane-glass-2 glass-2 purelane-rot rot" id="rot" aria-hidden="true">
+          <div class="frame">
+            <span class="purelane-pimg pimg p-kitchen on" role="img" aria-label="Purelane foaming kitchen cleaner" data-name="Kitchen cleaner" data-note="Foam lifts grease, no scrubbing"></span>
+            <span class="purelane-pimg pimg p-tap" role="img" aria-label="Purelane tap cleaner and limescale remover" data-name="Tap &amp; limescale" data-note="Melts hard water stains"></span>
+            <span class="purelane-pimg pimg p-laundry" role="img" aria-label="Purelane non-toxic laundry detergent" data-name="Laundry detergent" data-note="Tough on odour, soft on fabric"></span>
+            <span class="purelane-pimg pimg p-toilet" role="img" aria-label="Purelane non-toxic toilet cleaner" data-name="Toilet cleaner" data-note="Kills 99.9% of germs"></span>
+            <span class="purelane-pimg pimg p-floor" role="img" aria-label="Purelane natural herbal floor cleaner" data-name="Floor cleaner" data-note="Neem powered, pet safe"></span>
+            <span class="purelane-pimg pimg p-dish" role="img" aria-label="Purelane organic dishwash liquid gel" data-name="Dishwash gel" data-note="Cuts grease, kind to hands"></span>
+          </div>
+          <div class="cap"><b>Kitchen cleaner</b><span>Foam lifts grease, no scrubbing</span></div>
+          <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+
+      <!-- 4-RING STATISTICAL PROOF BAR -->
+      <div class="purelane-glass-2 glass-2 stats proof-stats" style="margin-top:20px">
+        <div class="stat">
+          <div class="ring">99.9%</div>
+          <h5>Germ kill</h5>
+          <p>Tested against germs and bacteria</p>
+        </div>
+        <div class="stat">
+          <div class="ring">0%</div>
+          <h5>Sulphates</h5>
+          <p>No SLS, chlorine or parabens</p>
+        </div>
+        <div class="stat">
+          <div class="ring">100%</div>
+          <h5>Plant based</h5>
+          <p>Cleansers derived from plants</p>
+        </div>
+        <div class="stat">
+          <div class="ring">4.8</div>
+          <h5>Rated</h5>
+          <p>Across 8,000+ verified reviews</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Ingredients",
+  "tag": "section",
+  "class": "purelane-ingredients-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Sourced from nature"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Ingredient Name",
+          "default": "Coconut"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Ingredient Benefit Description",
+          "default": "Plant-derived cleansers that lift grease"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Icon Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Ingredients & Proof",
+      "blocks": [
+        { "type": "ingredient", "settings": { "title": "Coconut", "text": "Plant-derived cleansers that lift grease" } },
+        { "type": "ingredient", "settings": { "title": "Orange peel", "text": "Natural degreaser and fresh citrus lift" } },
+        { "type": "ingredient", "settings": { "title": "Soap nut", "text": "A traditional plant foaming agent" } },
+        { "type": "ingredient", "settings": { "title": "Neem", "text": "Time-tested antibacterial from the tree" } },
+        { "type": "ingredient", "settings": { "title": "Lemongrass", "text": "Clean fragrance with nothing synthetic" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

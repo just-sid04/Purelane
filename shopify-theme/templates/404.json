@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "header": {
+      "type": "purelane-header"
+    },
+    "footer": {
+      "type": "purelane-footer"
+    }
+  },
+  "order": [
+    "header",
+    "footer"
+  ]
+}
