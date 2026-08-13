@@ -1,66 +1,13 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "sections": {
-    "header": {
-      "type": "purelane-header",
-      "settings": {}
-    },
-    "hero": {
-      "type": "purelane-hero",
-      "settings": {}
-    },
-    "reviews": {
-      "type": "purelane-reviews",
-      "settings": {}
-    },
-    "ingredients": {
-      "type": "purelane-ingredients",
-      "settings": {}
-    },
-    "pillars": {
-      "type": "purelane-pillars",
-      "settings": {}
-    },
-    "combos": {
-      "type": "purelane-combos",
-      "settings": {}
-    },
-    "bestsellers": {
-      "type": "purelane-bestsellers",
-      "settings": {}
-    },
-    "range": {
-      "type": "purelane-range",
-      "settings": {}
-    },
-    "bundles": {
-      "type": "purelane-bundles",
-      "settings": {}
-    },
-    "whybundles": {
-      "type": "purelane-whybundles",
-      "settings": {}
-    },
-    "categories": {
-      "type": "purelane-categories",
-      "settings": {}
-    },
-    "footer": {
-      "type": "purelane-footer",
-      "settings": {}
-    }
-  },
-  "order": [
-    "header",
-    "hero",
-    "reviews",
-    "ingredients",
-    "pillars",
-    "combos",
-    "bestsellers",
-    "range",
-    "bundles",
-    "whybundles",
-    "categories",
-    "footer"
-  ]
+  "sections": {},
+  "order": []
 }
