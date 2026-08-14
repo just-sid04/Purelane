@@ -37,8 +37,8 @@ function scheduleScrollState() { if (scrollFrame) return; scrollFrame = requestA
 function initGlobal() {
   if (globalReady) return; globalReady = true;
   addEventListener('scroll', scheduleScrollState, { passive: true }); addEventListener('resize', scheduleScrollState, { passive: true }); updateScrollState();
-  if (!matchMedia?.('(prefers-reduced-motion: reduce)').matches) document.addEventListener('mousemove', e => { if (Shopify?.inspectMode) return; if (pointerFrame) cancelAnimationFrame(pointerFrame); pointerFrame = requestAnimationFrame(() => { pointerFrame = 0; const px = ((e.clientX / innerWidth) - .5) * 18, py = ((e.clientY / innerHeight) - .5) * 10; document.querySelectorAll('.wl').forEach((el, i) => { const f = 1 + i * .35; el.style.setProperty('--px', `${px * f}px`); el.style.setProperty('--py', `${py * f}px`); }); }); }, { passive: true });
-  document.documentElement.classList.toggle('purelane-inspect-mode', Boolean(Shopify?.inspectMode));
+  if (!matchMedia?.('(prefers-reduced-motion: reduce)').matches) document.addEventListener('mousemove', e => { if (window.Shopify?.inspectMode) return; if (pointerFrame) cancelAnimationFrame(pointerFrame); pointerFrame = requestAnimationFrame(() => { pointerFrame = 0; const px = ((e.clientX / innerWidth) - .5) * 18, py = ((e.clientY / innerHeight) - .5) * 10; document.querySelectorAll('.wl').forEach((el, i) => { const f = 1 + i * .35; el.style.setProperty('--px', `${px * f}px`); el.style.setProperty('--py', `${py * f}px`); }); }); }, { passive: true });
+  document.documentElement.classList.toggle('purelane-inspect-mode', Boolean(window.Shopify?.inspectMode));
 }
 function initReveals(scope = document) {
   const items = [...scope.querySelectorAll('.rv:not(.in)')]; if (!items.length) return;
@@ -60,7 +60,7 @@ function initHeroes(scope = document) {
     const enter = () => { state.paused = true; stop(); }, leave = () => { state.paused = false; start(); };
     stage.addEventListener('pointerenter', enter); stage.addEventListener('pointerleave', leave);
     const product = root.querySelector('#heroProd,[data-hero-product]');
-    if (product && Animation && !reduced) { try { state.breath = product.animate([{ filter: 'drop-shadow(0 34px 54px rgba(2,20,19,.60))' }, { filter: 'drop-shadow(0 42px 68px rgba(2,20,19,.72))' }, { filter: 'drop-shadow(0 34px 54px rgba(2,20,19,.60))' }], { duration: 4800, easing: 'ease-in-out', iterations: Infinity }); } catch (_) {} }
+    if (product && window.Animation && !reduced) { try { state.breath = product.animate([{ filter: 'drop-shadow(0 34px 54px rgba(2,20,19,.60))' }, { filter: 'drop-shadow(0 42px 68px rgba(2,20,19,.72))' }, { filter: 'drop-shadow(0 34px 54px rgba(2,20,19,.60))' }], { duration: 4800, easing: 'ease-in-out', iterations: Infinity }); } catch (_) {} }
     go(state.current); start();
     addCleanup(root, () => { stop(); state.breath?.cancel?.(); stage.removeEventListener('pointerenter', enter); stage.removeEventListener('pointerleave', leave); });
   });
