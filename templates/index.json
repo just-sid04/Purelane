@@ -9,18 +9,289 @@
  */
 {
   "sections": {
-    "header": { "type": "purelane-header-fixed", "settings": {} },
-    "hero": { "type": "purelane-hero", "settings": {} },
-    "reviews": { "type": "purelane-reviews", "settings": {} },
-    "ingredients": { "type": "purelane-ingredients", "settings": {} },
-    "pillars": { "type": "purelane-pillars", "settings": {} },
-    "combos": { "type": "purelane-combos", "settings": {} },
-    "bestsellers": { "type": "purelane-bestsellers", "settings": { "product_list": ["gid://shopify/Product/9597135421672","gid://shopify/Product/9597133947112","gid://shopify/Product/9597135519976","gid://shopify/Product/9597135618280","gid://shopify/Product/9597135585512","gid://shopify/Product/9597135552744","gid://shopify/Product/9597133684968","gid://shopify/Product/9597135487208"], "products_to_show": 8 } },
-    "range": { "type": "purelane-range", "settings": {} },
-    "bundles": { "type": "purelane-bundles", "settings": {} },
-    "whybundles": { "type": "purelane-whybundles", "settings": {} },
-    "categories": { "type": "purelane-categories", "settings": {} },
-    "footer": { "type": "purelane-footer", "settings": {} }
+    "header": {
+      "type": "purelane-header-fixed",
+      "settings": {}
+    },
+    "hero": {
+      "type": "purelane-hero",
+      "settings": {}
+    },
+    "reviews": {
+      "type": "purelane-reviews",
+      "settings": {}
+    },
+    "ingredients": {
+      "type": "purelane-ingredients",
+      "settings": {}
+    },
+    "pillars": {
+      "type": "purelane-pillars",
+      "blocks": {
+        "pillar1": {
+          "type": "pillar",
+          "settings": {
+            "icon": "scrub",
+            "title": "Less scrubbing",
+            "description": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub."
+          }
+        },
+        "pillar2": {
+          "type": "pillar",
+          "settings": {
+            "icon": "shield",
+            "title": "Clean ingredients",
+            "description": "No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food."
+          }
+        },
+        "pillar3": {
+          "type": "pillar",
+          "settings": {
+            "icon": "heart",
+            "title": "Safe around everyone",
+            "description": "Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day."
+          }
+        }
+      },
+      "block_order": [
+        "pillar1",
+        "pillar2",
+        "pillar3"
+      ],
+      "settings": {}
+    },
+    "combos": {
+      "type": "purelane-combos",
+      "blocks": {
+        "combo1": {
+          "type": "combo",
+          "settings": {
+            "title": "Kitchen essentials",
+            "products": [
+              "gid://shopify/Product/9597133947112",
+              "gid://shopify/Product/9597133684968",
+              "gid://shopify/Product/9597135552744"
+            ],
+            "discount_percent": 22,
+            "save_label": "Best saving",
+            "flag": "Most popular",
+            "description": "Kitchen cleaning essentials selected from the live Shopify catalog.",
+            "featured": true
+          }
+        },
+        "combo2": {
+          "type": "combo",
+          "settings": {
+            "title": "Laundry care bundle",
+            "products": [
+              "gid://shopify/Product/9597135585512",
+              "gid://shopify/Product/9597135487208",
+              "gid://shopify/Product/9597135552744"
+            ],
+            "discount_percent": 24,
+            "save_label": "Save on laundry care",
+            "description": "Laundry and machine care products from the live catalog."
+          }
+        },
+        "combo3": {
+          "type": "combo",
+          "settings": {
+            "title": "Complete home bundle",
+            "products": [
+              "gid://shopify/Product/9597133947112",
+              "gid://shopify/Product/9597135519976",
+              "gid://shopify/Product/9597135618280",
+              "gid://shopify/Product/9597135585512",
+              "gid://shopify/Product/9597133684968"
+            ],
+            "discount_percent": 34,
+            "save_label": "Biggest saving",
+            "flag": "Best value",
+            "description": "A five-product whole-home selection using real Shopify products.",
+            "featured": true
+          }
+        },
+        "combo4": {
+          "type": "combo",
+          "settings": {
+            "title": "Bathroom deep clean",
+            "products": [
+              "gid://shopify/Product/9597135618280",
+              "gid://shopify/Product/9597133684968",
+              "gid://shopify/Product/9597135421672"
+            ],
+            "discount_percent": 30,
+            "save_label": "Save on bathroom care",
+            "description": "Bathroom and hard-water cleaning essentials."
+          }
+        },
+        "combo5": {
+          "type": "combo",
+          "settings": {
+            "title": "Hard water solution kit",
+            "products": [
+              "gid://shopify/Product/9597133684968",
+              "gid://shopify/Product/9597135618280"
+            ],
+            "discount_percent": 28,
+            "save_label": "Hard water saving",
+            "description": "A focused two-product solution for hard-water buildup."
+          }
+        }
+      },
+      "block_order": [
+        "combo1",
+        "combo2",
+        "combo3",
+        "combo4",
+        "combo5"
+      ],
+      "settings": {}
+    },
+    "bestsellers": {
+      "type": "purelane-bestsellers",
+      "settings": {
+        "product_list": [
+          "gid://shopify/Product/9597135421672",
+          "gid://shopify/Product/9597133947112",
+          "gid://shopify/Product/9597135519976",
+          "gid://shopify/Product/9597135618280",
+          "gid://shopify/Product/9597135585512",
+          "gid://shopify/Product/9597135552744",
+          "gid://shopify/Product/9597133684968",
+          "gid://shopify/Product/9597135487208"
+        ],
+        "products_to_show": 8
+      }
+    },
+    "range": {
+      "type": "purelane-range",
+      "settings": {
+        "product_limit": 8
+      }
+    },
+    "bundles": {
+      "type": "purelane-bundles",
+      "blocks": {
+        "tier1": {
+          "type": "tier",
+          "settings": {
+            "tag": "Starter",
+            "products": [
+              "gid://shopify/Product/9597133684968",
+              "gid://shopify/Product/9597135618280"
+            ],
+            "discount_percent": 28,
+            "feature_1": "Choose any two products",
+            "feature_2": "Free shipping across India"
+          }
+        },
+        "tier2": {
+          "type": "tier",
+          "settings": {
+            "tag": "Most popular",
+            "is_featured": true,
+            "products": [
+              "gid://shopify/Product/9597133947112",
+              "gid://shopify/Product/9597133684968",
+              "gid://shopify/Product/9597135519976"
+            ],
+            "discount_percent": 25,
+            "feature_1": "Choose any three products",
+            "feature_2": "Covers kitchen and laundry",
+            "feature_3": "Free shipping across India"
+          }
+        },
+        "tier3": {
+          "type": "tier",
+          "settings": {
+            "tag": "Whole home",
+            "products": [
+              "gid://shopify/Product/9597133947112",
+              "gid://shopify/Product/9597133684968",
+              "gid://shopify/Product/9597135519976",
+              "gid://shopify/Product/9597135618280",
+              "gid://shopify/Product/9597135585512"
+            ],
+            "discount_percent": 34,
+            "feature_1": "Choose any five products",
+            "feature_2": "Every room in one order",
+            "feature_3": "Free shipping across India"
+          }
+        }
+      },
+      "block_order": [
+        "tier1",
+        "tier2",
+        "tier3"
+      ],
+      "settings": {}
+    },
+    "whybundles": {
+      "type": "purelane-whybundles",
+      "settings": {}
+    },
+    "categories": {
+      "type": "purelane-categories",
+      "blocks": {
+        "cat1": {
+          "type": "category",
+          "settings": {
+            "product": "gid://shopify/product/9597133947112",
+            "title": "Kitchen bundle",
+            "description": "Grease, dishes & more"
+          }
+        },
+        "cat2": {
+          "type": "category",
+          "settings": {
+            "product": "gid://shopify/product/9597135618280",
+            "title": "Bathroom bundle",
+            "description": "Deep clean & disinfect"
+          }
+        },
+        "cat3": {
+          "type": "category",
+          "settings": {
+            "product": "gid://shopify/product/9597135585512",
+            "title": "Laundry bundle",
+            "description": "Softer, fresher wash"
+          }
+        },
+        "cat4": {
+          "type": "category",
+          "settings": {
+            "product": "gid://shopify/product/9597133684968",
+            "title": "Hard water bundle",
+            "description": "Melt away limescale"
+          }
+        }
+      },
+      "block_order": [
+        "cat1",
+        "cat2",
+        "cat3",
+        "cat4"
+      ],
+      "settings": {}
+    },
+    "footer": {
+      "type": "purelane-footer",
+      "settings": {}
+    }
   },
-  "order": ["header","hero","reviews","ingredients","pillars","combos","bestsellers","range","bundles","whybundles","categories","footer"]
+  "order": [
+    "header",
+    "hero",
+    "reviews",
+    "ingredients",
+    "pillars",
+    "combos",
+    "bestsellers",
+    "range",
+    "bundles",
+    "whybundles",
+    "categories",
+    "footer"
+  ]
 }
