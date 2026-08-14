@@ -1,44 +1,7 @@
 <section class="purelane-sec" id="combos" data-scene="3">
   <div class="purelane-wrap">
-    <div class="purelane-panel-head rv">
-      <span class="purelane-kicker">{{ section.settings.kicker | default: 'Pre-built to save you money' | escape }}</span>
-      <h2 class="purelane-d2" style="margin-top:12px">{{ section.settings.title | default: 'Best selling combos' | escape }}</h2>
-      <div class="purelane-rule"><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><i></i></div>
-      <p class="purelane-lede" style="margin:14px auto 0">{{ section.settings.subheading | default: 'Swipe through the boxes people order most. Each one is already priced below buying the same products on their own.' | escape }}</p>
-    </div>
-    <div class="purelane-comborail comborail rv">
-      {%- for block in section.blocks -%}
-        {%- assign total_price = 0 -%}
-        {%- for product in block.settings.products -%}{%- assign total_price = total_price | plus: product.price -%}{%- endfor -%}
-        {%- assign discount_factor = 100 | minus: block.settings.discount_percent -%}
-        {%- assign bundle_price = total_price | times: discount_factor | divided_by: 100 -%}
-        {%- assign saving = total_price | minus: bundle_price -%}
-        <article class="purelane-glass combo{% if block.settings.featured %} hero-combo{% endif %}" {{ block.shopify_attributes }}>
-          <div class="tray">
-            {%- if block.settings.save_label != blank -%}<span class="save">{{ block.settings.save_label | escape }}</span>{%- endif -%}
-            {%- if block.settings.flag != blank -%}<span class="flag">{{ block.settings.flag | escape }}</span>{%- endif -%}
-            <div class="stack">
-              {%- for product in block.settings.products limit: 5 -%}
-                <span class="it">
-                  {%- if product.featured_image -%}{{ product.featured_image | image_url: width: 220 | image_tag: loading: 'lazy', widths: '100,160,220', sizes: '80px', alt: product.featured_image.alt | default: product.title, class: 'purelane-pimg pimg' }}{%- else -%}<span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18 9 12l4 4 3-3 4 5"/><path d="M5 5h14v14H5z"/></svg></span>{%- endif -%}
-                  <span>{{ product.title | escape }}</span>
-                </span>{%- unless forloop.last -%}<span class="plus" aria-hidden="true">+</span>{%- endunless -%}
-              {%- endfor -%}
-            </div>
-          </div>
-          <div class="body">
-            <h3>{{ block.settings.title | default: 'Product combo' | escape }}</h3>
-            <div class="cnt">{{ block.settings.products.count }} products</div>
-            <p class="inc">{{ block.settings.description | default: 'A curated group of products at a better combined price.' | escape }}</p>
-            <div class="prow"><strong>{{ bundle_price | money }}</strong><s>{{ total_price | money }}</s>{% if saving > 0 %}<em>Save {{ saving | money }}</em>{% endif %}</div>
-            <div class="fine">Inclusive of all taxes &middot; COD available</div>
-            {%- assign first_product = block.settings.products | first -%}
-            <a class="purelane-btn {% if block.settings.featured %}purelane-btn-primary{% else %}purelane-btn-ghost{% endif %}" href="{{ block.settings.url | default: first_product.url | default: '#shop' }}">{{ block.settings.button_label | default: 'Shop combo' | escape }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a>
-          </div>
-        </article>
-      {%- else -%}<p class="purelane-body-s">Add combo blocks and choose products in the Theme Editor.</p>{%- endfor -%}
-    </div>
-    <div class="swipecue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>{{ section.settings.swipe_hint | default: 'Swipe for more combos' | escape }}</div>
+    <div class="purelane-panel-head rv"><span class="purelane-kicker">{{ section.settings.kicker | default: 'Pre-built to save you money' | escape }}</span><h2 class="purelane-d2" style="margin-top:12px">{{ section.settings.title | default: 'Best selling combos' | escape }}</h2><div class="purelane-rule"><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><i></i></div><p class="purelane-lede" style="margin:14px auto 0">{{ section.settings.subheading | default: 'Swipe through the boxes people order most. Each one is already priced below buying the same products on their own.' | escape }}</p></div>
+    <div class="purelane-comborail comborail rv">{%- for block in section.blocks -%}{%- assign total_price = 0 -%}{%- for product in block.settings.products -%}{%- assign variant = product.selected_or_first_available_variant -%}{%- assign total_price = total_price | plus: variant.price -%}{%- endfor -%}{%- assign discount_factor = 100 | minus: block.settings.discount_percent -%}{%- assign bundle_price = total_price | times: discount_factor | divided_by: 100 -%}{%- assign saving = total_price | minus: bundle_price -%}<article class="purelane-glass combo{% if block.settings.featured %} hero-combo{% endif %}" {{ block.shopify_attributes }}><div class="tray">{%- if block.settings.save_label != blank -%}<span class="save">{{ block.settings.save_label | escape }}</span>{%- endif -%}{%- if block.settings.flag != blank -%}<span class="flag">{{ block.settings.flag | escape }}</span>{%- endif -%}<div class="stack">{%- for product in block.settings.products limit: 5 -%}<span class="it">{%- if product.featured_image -%}{{ product.featured_image | image_url: width: 220 | image_tag: loading: 'lazy', widths: '100,160,220', sizes: '80px', alt: product.featured_image.alt | default: product.title, class: 'purelane-pimg pimg' }}{%- else -%}<span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18 9 12l4 4 3-3 4 5"/><path d="M5 5h14v14H5z"/></svg></span>{%- endif -%}<span>{{ product.title | escape }}</span></span>{%- unless forloop.last -%}<span class="plus" aria-hidden="true">+</span>{%- endunless -%}{%- endfor -%}</div></div><div class="body"><h3>{{ block.settings.title | default: 'Product combo' | escape }}</h3><div class="cnt">{{ block.settings.products.count }} products</div><p class="inc">{{ block.settings.description | default: 'A curated group of products at a better combined price.' | escape }}</p><div class="prow"><strong>{{ bundle_price | money }}</strong><s>{{ total_price | money }}</s>{% if saving > 0 %}<em>Save {{ saving | money }}</em>{% endif %}</div><div class="fine">Inclusive of all taxes &middot; COD available</div>{%- assign first_product = block.settings.products | first -%}<a class="purelane-btn {% if block.settings.featured %}purelane-btn-primary{% else %}purelane-btn-ghost{% endif %}" href="{{ block.settings.url | default: first_product.url | default: '#shop' }}">{{ block.settings.button_label | default: 'Shop combo' | escape }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a></div></article>{%- else -%}<p class="purelane-body-s">Add combo blocks and choose products in the Theme Editor.</p>{%- endfor -%}</div><div class="swipecue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>{{ section.settings.swipe_hint | default: 'Swipe for more combos' | escape }}</div>
   </div>
 </section>
 {% schema %}
