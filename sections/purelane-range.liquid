@@ -1,6 +1,6 @@
 {% comment %}
   Purelane Full Range Section
-  Displays all 10 product bottles lined up on a single glass shelf with swipe cue.
+  Shopify-backed product shelf. Merchants can choose a collection and control the visible count.
 {% endcomment %}
 
 <section class="purelane-sec" id="range" data-scene="3">
@@ -8,26 +8,33 @@
     <div class="purelane-glass range rv">
       <div class="range-head">
         <div>
-          <span class="purelane-kicker">The full range</span>
-          <h2 class="purelane-d2" style="margin-top:10px">Every room, one shelf</h2>
+          <span class="purelane-kicker">{{ section.settings.kicker | default: 'The full range' | escape }}</span>
+          <h2 class="purelane-d2" style="margin-top:10px">{{ section.settings.title | default: 'Every room, one shelf' | escape }}</h2>
         </div>
-        <p class="purelane-body-s" style="max-width:34ch;margin-bottom:4px">Floors, taps, kitchen, laundry, bathroom and hands. Fourteen plant-based formulas that replace every harsh bottle under your sink.</p>
+        <p class="purelane-body-s" style="max-width:34ch;margin-bottom:4px">{{ section.settings.description | default: 'Floors, taps, kitchen, laundry, bathroom and hands. Plant-based formulas for the whole home.' | escape }}</p>
       </div>
+
+      {%- assign range_collection = section.settings.collection -%}
+      {%- if range_collection == blank -%}
+        {%- assign range_collection = collections.all -%}
+      {%- endif -%}
+
       <div class="stripwrap">
         <div class="rangerow">
-          <span class="purelane-pimg p-floor" role="img" aria-label="Natural herbal floor cleaner"></span>
-          <span class="purelane-pimg p-tap" role="img" aria-label="Tap cleaner and limescale remover"></span>
-          <span class="purelane-pimg p-kitchen" role="img" aria-label="Foaming kitchen cleaner"></span>
-          <span class="purelane-pimg p-toilet" role="img" aria-label="Non-toxic toilet cleaner"></span>
-          <span class="purelane-pimg p-laundry" role="img" aria-label="Natural laundry detergent"></span>
-          <span class="purelane-pimg p-dish" role="img" aria-label="Organic dishwash liquid gel"></span>
-          <span class="purelane-pimg p-metal" role="img" aria-label="Copper, bronze and brass cleaner"></span>
-          <span class="purelane-pimg p-wm" role="img" aria-label="Washing machine cleaner descaler"></span>
-          <span class="purelane-pimg p-handwash" role="img" aria-label="Gentle hydrating liquid handwash"></span>
-          <span class="purelane-pimg p-eraser" role="img" aria-label="Magic eraser"></span>
+          {%- for product in range_collection.products limit: section.settings.product_limit -%}
+            <a class="purelane-range-product" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+              {%- if product.featured_image -%}
+                {{ product.featured_image | image_url: width: 320 | image_tag: loading: 'lazy', widths: '120,180,240,320', sizes: '(max-width: 760px) 120px, 180px', alt: product.featured_image.alt | default: product.title, class: 'purelane-pimg range-product-image' }}
+              {%- else -%}
+                <span class="purelane-pimg pimg range-product-placeholder" role="img" aria-label="{{ product.title | escape }}"></span>
+              {%- endif -%}
+            </a>
+          {%- else -%}
+            <p class="purelane-body-s">Select a collection in the Theme Editor to populate the range.</p>
+          {%- endfor -%}
         </div>
       </div>
-      <p class="striphint">Swipe to see the full shelf</p>
+      <p class="striphint">{{ section.settings.swipe_hint | default: 'Swipe to see the full shelf' | escape }}</p>
     </div>
   </div>
 </section>
@@ -37,10 +44,16 @@
   "name": "Purelane Full Range",
   "tag": "section",
   "class": "purelane-range-section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "The full range" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Every room, one shelf" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Floors, taps, kitchen, laundry, bathroom and hands. Plant-based formulas for the whole home." },
+    { "type": "collection", "id": "collection", "label": "Product Collection" },
+    { "type": "range", "id": "product_limit", "label": "Products to show", "min": 1, "max": 16, "step": 1, "default": 8 },
+    { "type": "text", "id": "swipe_hint", "label": "Mobile Swipe Hint", "default": "Swipe to see the full shelf" }
+  ],
   "presets": [
-    {
-      "name": "Purelane Full Range"
-    }
+    { "name": "Purelane Full Range" }
   ]
 }
 {% endschema %}
