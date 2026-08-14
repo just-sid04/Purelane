@@ -11,7 +11,94 @@
   "sections": {
     "header": {
       "type": "purelane-header-fixed",
-      "settings": {}
+      "blocks": {
+        "ticker1": {
+          "type": "ticker",
+          "settings": {
+            "text": "Free shipping",
+            "emphasis": "on every bundle across India"
+          }
+        },
+        "ticker2": {
+          "type": "ticker",
+          "settings": {
+            "text": "100% plant-based",
+            "emphasis": "and non-toxic"
+          }
+        },
+        "ticker3": {
+          "type": "ticker",
+          "settings": {
+            "text": "Loved by",
+            "emphasis": "30,000+ happy homes"
+          }
+        },
+        "ticker4": {
+          "type": "ticker",
+          "settings": {
+            "text": "Buy 3",
+            "emphasis": "at flat ₹499"
+          }
+        },
+        "rail1": {
+          "type": "rail",
+          "settings": {
+            "label": "Hero",
+            "url": "/#top"
+          }
+        },
+        "rail2": {
+          "type": "rail",
+          "settings": {
+            "label": "Ingredients",
+            "url": "/#ingredients"
+          }
+        },
+        "rail3": {
+          "type": "rail",
+          "settings": {
+            "label": "How it works",
+            "url": "/#how"
+          }
+        },
+        "rail4": {
+          "type": "rail",
+          "settings": {
+            "label": "Proof",
+            "url": "/#proof"
+          }
+        },
+        "rail5": {
+          "type": "rail",
+          "settings": {
+            "label": "Bundles",
+            "url": "/#bundles"
+          }
+        },
+        "rail6": {
+          "type": "rail",
+          "settings": {
+            "label": "Reviews",
+            "url": "/#reviews"
+          }
+        }
+      },
+      "block_order": [
+        "ticker1",
+        "ticker2",
+        "ticker3",
+        "ticker4",
+        "rail1",
+        "rail2",
+        "rail3",
+        "rail4",
+        "rail5",
+        "rail6"
+      ],
+      "settings": {
+        "brand_name": "Purelane",
+        "brand_tagline": "Clean, simply"
+      }
     },
     "hero": {
       "type": "purelane-hero",
@@ -405,6 +492,42 @@
     },
     "whybundles": {
       "type": "purelane-whybundles",
+      "blocks": {
+        "benefit1": {
+          "type": "benefit",
+          "settings": {
+            "title": "Save up to 45%",
+            "description": "Versus buying the same products separately"
+          }
+        },
+        "benefit2": {
+          "type": "benefit",
+          "settings": {
+            "title": "One flat price",
+            "description": "No calculators, no comparing carts"
+          }
+        },
+        "benefit3": {
+          "type": "benefit",
+          "settings": {
+            "title": "Curated by experts",
+            "description": "Products picked to work well together"
+          }
+        },
+        "benefit4": {
+          "type": "benefit",
+          "settings": {
+            "title": "Free shipping always",
+            "description": "Included on every bundle, all India"
+          }
+        }
+      },
+      "block_order": [
+        "benefit1",
+        "benefit2",
+        "benefit3",
+        "benefit4"
+      ],
       "settings": {}
     },
     "categories": {
