@@ -9,19 +9,38 @@ let scrollFrame = 0;
 let pointerFrame = 0;
 const SECTION_SELECTOR = '.shopify-section,[id^="shopify-section-"]';
 
-const sectionFor = el => el?.closest?.(SECTION_SELECTOR) || el?.parentElement || null;
+const sectionFor = el => {
+  if (!el) return null;
+  if (el.matches?.(SECTION_SELECTOR)) return el;
+  return el.closest?.(SECTION_SELECTOR) || null;
+};
+
 function eventSection(event) {
-  const target = event?.target;
-  if (target?.matches?.(SECTION_SELECTOR)) return target;
-  return target?.closest?.(SECTION_SELECTOR) || (event?.detail?.sectionId ? document.getElementById(`shopify-section-${event.detail.sectionId}`) : null);
+  const id = event?.detail?.sectionId;
+  if (id) {
+    const byId = document.getElementById(`shopify-section-${id}`);
+    if (byId) return byId;
+  }
+  return sectionFor(event?.target);
 }
-function addCleanup(root, fn) { if (!root) return; const list = PURELANE.get(root) || []; list.push(fn); PURELANE.set(root, list); }
+
+function addCleanup(root, fn) {
+  if (!root) return;
+  const list = PURELANE.get(root) || [];
+  list.push(fn);
+  PURELANE.set(root, list);
+}
+
 function cleanup(root) {
   if (!root) return;
   (PURELANE.get(root) || []).forEach(fn => { try { fn(); } catch (_) {} });
-  PURELANE.delete(root); HERO_STATE.delete(root);
+  PURELANE.delete(root);
+  HERO_STATE.delete(root);
   root.querySelectorAll('.rv').forEach(el => revealObserver?.unobserve(el));
+  root.querySelectorAll('[data-purelane-rotator-ready="1"]').forEach(el => delete el.dataset.purelaneRotatorReady);
+  root.querySelectorAll('.comborail,[data-purelane-hint-ready="1"]').forEach(el => { if (el.dataset) delete el.dataset.purelaneHintReady; });
 }
+
 function updateScrollState() {
   const vh = innerHeight;
   document.querySelectorAll('#hdr,[data-purelane-header]').forEach(el => el.classList.toggle('up', scrollY > 90));
@@ -71,7 +90,7 @@ function initRotators(scope = document) {
     rot.dataset.purelaneRotatorReady = '1'; let current = Math.max(0, imgs.findIndex(x => x.classList.contains('on'))); const reduced = matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     const show = n => { const old = current; current = (n + imgs.length) % imgs.length; imgs[old]?.classList.remove('on'); dots[old]?.classList.remove('on'); imgs[current]?.classList.add('on'); dots[current]?.classList.add('on'); if (cap) { const b = cap.querySelector('b'), s = cap.querySelector('span'); if (b) b.textContent = imgs[current]?.dataset.name || ''; if (s) s.textContent = imgs[current]?.dataset.note || ''; } };
     dots.forEach((dot, i) => dot.addEventListener('click', () => show(i))); const timer = reduced || imgs.length < 2 ? null : setInterval(() => show(current + 1), 2800); show(current);
-    addCleanup(root, () => { clearInterval(timer); delete rot.dataset.purelaneRotatorReady; });
+    addCleanup(root, () => { if (timer) clearInterval(timer); delete rot.dataset.purelaneRotatorReady; });
   });
 }
 function initHints(scope = document) {
@@ -90,7 +109,7 @@ initialise();
 document.addEventListener('click', addToCart); document.addEventListener('click', burgerToggle); document.addEventListener('click', closeMobileNav); document.addEventListener('click', smoothAnchor);
 document.addEventListener('shopify:section:load', e => { const root = eventSection(e); if (root) { cleanup(root); initialise(root); } });
 document.addEventListener('shopify:section:unload', e => { const root = eventSection(e); if (root) cleanup(root); scheduleScrollState(); });
-document.addEventListener('shopify:section:reorder', () => initialise());
+document.addEventListener('shopify:section:reorder', () => scheduleScrollState());
 document.addEventListener('shopify:section:select', e => { const root = eventSection(e); if (root) { root.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); initReveals(root); } scheduleScrollState(); });
 document.addEventListener('shopify:section:deselect', scheduleScrollState);
 document.addEventListener('shopify:block:select', e => { selectBlock(e); e.target?.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' }); });
