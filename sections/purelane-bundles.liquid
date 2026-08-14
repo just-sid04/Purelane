@@ -1,83 +1,25 @@
-{% comment %}
-  Purelane Bundles Section
-  Merchant-editable tiers. Product prices and product imagery come from Shopify; tier pricing is derived from the selected products and discount setting.
-{% endcomment %}
-
 <section class="purelane-sec sec" id="bundles" data-scene="3">
   <div class="purelane-wrap wrap">
     <div class="purelane-glass glass purelane-sec-pad sec-pad rv" style="margin-bottom:16px">
-      <div class="purelane-panel-head panel-head" style="margin-bottom:0">
-        <span class="purelane-kicker kicker">{{ section.settings.kicker | default: 'Build your bundle' | escape }}</span>
-        <h2 class="purelane-d2 d2" style="margin-top:12px">{{ section.settings.title | default: 'One box. Every room.' | escape }}</h2>
-        <p class="purelane-lede lede" style="margin:0 auto">{{ section.settings.subheading | default: 'Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way.' | escape }}</p>
-      </div>
+      <div class="purelane-panel-head panel-head" style="margin-bottom:0"><span class="purelane-kicker kicker">{{ section.settings.kicker | default: 'Build your bundle' | escape }}</span><h2 class="purelane-d2 d2" style="margin-top:12px">{{ section.settings.title | default: 'One box. Every room.' | escape }}</h2><p class="purelane-lede lede" style="margin:0 auto">{{ section.settings.subheading | default: 'Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way.' | escape }}</p></div>
     </div>
-
     <div class="purelane-tiers tiers">
       {%- for block in section.blocks -%}
-        {%- assign total_price = 0 -%}
-        {%- for product in block.settings.products -%}
-          {%- assign total_price = total_price | plus: product.selected_or_first_available_variant.price -%}
-        {%- endfor -%}
-        {%- assign discount_factor = 100 | minus: block.settings.discount_percent -%}
-        {%- assign bundle_price = total_price | times: discount_factor | divided_by: 100 -%}
-        {%- assign saving = total_price | minus: bundle_price -%}
+        {%- assign total_price = 0 -%}{%- for product in block.settings.products -%}{%- assign total_price = total_price | plus: product.price -%}{%- endfor -%}
+        {%- assign discount_factor = 100 | minus: block.settings.discount_percent -%}{%- assign bundle_price = total_price | times: discount_factor | divided_by: 100 -%}{%- assign saving = total_price | minus: bundle_price -%}
         <article class="purelane-glass glass purelane-tier tier{% if block.settings.is_featured %} best{% endif %} rv" {{ block.shopify_attributes }}>
           {%- if block.settings.tag != blank -%}<span class="purelane-tag tag">{{ block.settings.tag | escape }}</span>{%- endif -%}
-          <div class="purelane-tierpix tierpix{% if block.settings.products.count > 3 %} five{% endif %}" aria-hidden="true">
-            {%- for product in block.settings.products limit: 5 -%}
-              {%- if product.featured_image -%}
-                {{ product.featured_image | image_url: width: 180 | image_tag: loading: 'lazy', widths: '90,140,180', sizes: '70px', alt: '', class: 'purelane-pimg pimg' }}
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
+          <div class="purelane-tierpix tierpix" aria-hidden="true">{%- for product in block.settings.products limit: 5 -%}{%- if product.featured_image -%}{{ product.featured_image | image_url: width: 180 | image_tag: loading: 'lazy', widths: '90,140,180', sizes: '70px', alt: '', class: 'purelane-pimg pimg' }}{%- endif -%}{%- endfor -%}</div>
           <div class="purelane-qty qty">{{ block.settings.products.count }}<small>Products</small></div>
           <div class="purelane-price price">{{ bundle_price | money }} <s>{{ total_price | money }}</s></div>
           {%- if saving > 0 -%}<p class="purelane-body-s body-s" style="font-size:12px">Save {{ saving | money }} · {{ block.settings.discount_percent }}% bundle saving</p>{%- endif -%}
-          <ul>
-            {%- if block.settings.feature_1 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.feature_1 | escape }}</li>{%- endif -%}
-            {%- if block.settings.feature_2 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.feature_2 | escape }}</li>{%- endif -%}
-            {%- if block.settings.feature_3 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.feature_3 | escape }}</li>{%- endif -%}
-          </ul>
-          <a class="purelane-btn btn {% if block.settings.is_featured %}purelane-btn-primary btn-primary{% else %}purelane-btn-ghost btn-ghost{% endif %}" href="{{ block.settings.btn_url | default: '#shop' }}">{{ block.settings.btn_label | default: 'Build this box' | escape }}{% if block.settings.is_featured %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>{% endif %}</a>
+          <ul>{%- if block.settings.feature_1 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.feature_1 | escape }}</li>{%- endif -%}{%- if block.settings.feature_2 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.feature_2 | escape }}</li>{%- endif -%}{%- if block.settings.feature_3 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.feature_3 | escape }}</li>{%- endif -%}</ul>
+          <a class="purelane-btn btn {% if block.settings.is_featured %}purelane-btn-primary btn-primary{% else %}purelane-btn-ghost btn-ghost{% endif %}" href="{{ block.settings.btn_url | default: '#shop' }}">{{ block.settings.btn_label | default: 'Build this box' | escape }}{% if block.settings.is_featured %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>{% endif %}</a>
         </article>
-      {%- else -%}
-        <p class="purelane-body-s">Add bundle tier blocks and choose products in the Theme Editor.</p>
-      {%- endfor -%}
+      {%- else -%}<p class="purelane-body-s">Add bundle tier blocks and choose products in the Theme Editor.</p>{%- endfor -%}
     </div>
   </div>
 </section>
-
 {% schema %}
-{
-  "name": "Purelane Bundles",
-  "tag": "section",
-  "class": "purelane-bundles-section",
-  "max_blocks": 6,
-  "settings": [
-    { "type": "text", "id": "kicker", "label": "Kicker Text", "default": "Build your bundle" },
-    { "type": "text", "id": "title", "label": "Section Heading", "default": "One box. Every room." },
-    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way." }
-  ],
-  "blocks": [
-    {
-      "type": "tier",
-      "name": "Bundle Tier Box",
-      "settings": [
-        { "type": "text", "id": "tag", "label": "Tag Badge Label", "default": "Starter" },
-        { "type": "checkbox", "id": "is_featured", "label": "Highlight as Featured", "default": false },
-        { "type": "product_list", "id": "products", "label": "Products", "limit": 5 },
-        { "type": "range", "id": "discount_percent", "label": "Bundle saving %", "min": 0, "max": 50, "step": 1, "default": 20 },
-        { "type": "text", "id": "feature_1", "label": "Feature Bullet 1", "default": "Choose your products" },
-        { "type": "text", "id": "feature_2", "label": "Feature Bullet 2", "default": "Free shipping across India" },
-        { "type": "text", "id": "feature_3", "label": "Feature Bullet 3" },
-        { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Build this box" },
-        { "type": "url", "id": "btn_url", "label": "Button Link" }
-      ]
-    }
-  ],
-  "presets": [
-    { "name": "Purelane Bundles" }
-  ]
-}
+{"name":"Purelane Bundles","tag":"section","class":"purelane-bundles-section","max_blocks":6,"settings":[{"type":"text","id":"kicker","label":"Kicker Text","default":"Build your bundle"},{"type":"text","id":"title","label":"Section Heading","default":"One box. Every room."},{"type":"textarea","id":"subheading","label":"Subheading","default":"Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way."}],"blocks":[{"type":"tier","name":"Bundle Tier Box","settings":[{"type":"text","id":"tag","label":"Tag Badge Label","default":"Starter"},{"type":"checkbox","id":"is_featured","label":"Highlight as Featured","default":false},{"type":"product_list","id":"products","label":"Products","limit":5},{"type":"range","id":"discount_percent","label":"Bundle saving %","min":0,"max":50,"step":1,"default":20},{"type":"text","id":"feature_1","label":"Feature Bullet 1","default":"Choose your products"},{"type":"text","id":"feature_2","label":"Feature Bullet 2","default":"Free shipping across India"},{"type":"text","id":"feature_3","label":"Feature Bullet 3"},{"type":"text","id":"btn_label","label":"Button Label","default":"Build this box"},{"type":"url","id":"btn_url","label":"Button Link"}]}],"presets":[{"name":"Purelane Bundles"}]}
 {% endschema %}

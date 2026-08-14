@@ -9,7 +9,7 @@
     <div class="purelane-comborail comborail rv">
       {%- for block in section.blocks -%}
         {%- assign total_price = 0 -%}
-        {%- for product in block.settings.products -%}{%- assign total_price = total_price | plus: product.selected_or_first_available_variant.price -%}{%- endfor -%}
+        {%- for product in block.settings.products -%}{%- assign total_price = total_price | plus: product.price -%}{%- endfor -%}
         {%- assign discount_factor = 100 | minus: block.settings.discount_percent -%}
         {%- assign bundle_price = total_price | times: discount_factor | divided_by: 100 -%}
         {%- assign saving = total_price | minus: bundle_price -%}
