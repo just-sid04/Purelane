@@ -30,8 +30,9 @@ function cleanup(root) {
 }
 
 function updateScrollState() {
-  const hdr = document.querySelector('#hdr,[data-purelane-header]');
-  if (hdr) hdr.classList.toggle('up', window.scrollY > 90);
+  document.querySelectorAll('#hdr,[data-purelane-header]').forEach(hdr => {
+    hdr.classList.toggle('up', window.scrollY > 90);
+  });
 
   document.querySelectorAll('#scenes,[data-purelane-scenes]').forEach(scenes => {
     const sceneEls = [...scenes.querySelectorAll('.scene')];
@@ -52,13 +53,14 @@ function updateScrollState() {
     }
   });
 
-  const rail = document.querySelector('#rail,[data-purelane-rail]');
-  if (rail) rail.querySelectorAll('a').forEach(link => {
-    const id = link.getAttribute('href')?.replace(/^#/, '');
-    const target = id ? document.getElementById(id) : null;
-    if (!target) return;
-    const r = target.getBoundingClientRect();
-    link.classList.toggle('on', r.top < innerHeight * .6 && r.bottom > innerHeight * .1);
+  document.querySelectorAll('#rail,[data-purelane-rail]').forEach(rail => {
+    rail.querySelectorAll('a').forEach(link => {
+      const id = link.getAttribute('href')?.replace(/^#/, '');
+      const target = id ? document.getElementById(id) : null;
+      if (!target) return;
+      const r = target.getBoundingClientRect();
+      link.classList.toggle('on', r.top < innerHeight * .6 && r.bottom > innerHeight * .1);
+    });
   });
 }
 
@@ -275,3 +277,4 @@ document.addEventListener('shopify:section:reorder', () => { initReveals(); upda
 document.addEventListener('shopify:section:select', event => { const root = eventSection(event); if (root) initReveals(root); updateScrollState(); });
 document.addEventListener('shopify:section:deselect', updateScrollState);
 document.addEventListener('shopify:block:select', event => { event.target?.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' }); });
+document.addEventListener('shopify:block:deselect', () => {});
