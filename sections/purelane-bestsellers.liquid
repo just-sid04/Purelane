@@ -1,120 +1,16 @@
-{% comment %}
-  Purelane Bestsellers Section
-  Renders product grid shelf using real Shopify collection/product_list data and reuses purelane-product-card.liquid.
-{% endcomment %}
-
 <section class="purelane-sec sec" id="shop" data-scene="3">
   <div class="purelane-wrap wrap">
-    <div class="purelane-panel-head panel-head rv">
-      <span class="purelane-kicker kicker">{{ section.settings.kicker | default: 'Bestsellers' | escape }}</span>
-      <h2 class="purelane-d2 d2" style="margin-top:12px">{{ section.settings.title | default: 'Loved by 30,000 homes' | escape }}</h2>
-      <div class="purelane-rule rule">
-        <i></i>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
-        <i></i>
-      </div>
-    </div>
-
+    <div class="purelane-panel-head panel-head rv"><span class="purelane-kicker kicker">{{ section.settings.kicker | default: 'Bestsellers' | escape }}</span><h2 class="purelane-d2 d2" style="margin-top:12px">{{ section.settings.title | default: 'Loved by 30,000 homes' | escape }}</h2><div class="purelane-rule rule"><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><i></i></div></div>
     <div class="purelane-shelf shelf">
       {%- assign products_to_show = section.settings.products_to_show | default: 4 -%}
-
       {%- if section.settings.product_list != blank -%}
-        {%- for prod in section.settings.product_list limit: products_to_show -%}
-          {% render 'purelane-product-card', product: prod %}
-        {%- endfor -%}
-      {%- elsif section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
-        {%- for prod in section.settings.collection.products limit: products_to_show -%}
-          {% render 'purelane-product-card', product: prod %}
-        {%- endfor -%}
-      {%- else -%}
-        <!-- Prototype Bestsellers Shelf Fallback Items (Up to 8 products) -->
-        <article class="purelane-glass glass purelane-card card rv">
-          <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Best seller</span><span class="purelane-pimg pimg p-tap" role="img"></span></div>
-          <h4 class="purelane-card-title">Tap cleaner &amp; limescale remover</h4>
-          <div class="purelane-card-rate rate"><b>★ 4.8</b> · 237 reviews</div>
-          <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
-          <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
-        </article>
-
-        <article class="purelane-glass glass purelane-card card rv rv-d1">
-          <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Best seller</span><span class="purelane-pimg pimg p-kitchen" role="img"></span></div>
-          <h4 class="purelane-card-title">Kitchen cleaner, foaming</h4>
-          <div class="purelane-card-rate rate"><b>★ 4.8</b> · 254 reviews</div>
-          <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
-          <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
-        </article>
-
-        <article class="purelane-glass glass purelane-card card rv rv-d2">
-          <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Top rated</span><span class="purelane-pimg pimg p-metal" role="img"></span></div>
-          <h4 class="purelane-card-title">Copper, bronze &amp; brass cleaner</h4>
-          <div class="purelane-card-rate rate"><b>★ 4.8</b> · 231 reviews</div>
-          <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
-          <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
-        </article>
-
-        <article class="purelane-glass glass purelane-card card rv rv-d3">
-          <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">New</span><span class="purelane-pimg pimg p-wm" role="img"></span></div>
-          <h4 class="purelane-card-title">Washing machine cleaner &amp; descaler</h4>
-          <div class="purelane-card-rate rate"><b>★ 4.8</b> · 183 reviews</div>
-          <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
-          <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
-        </article>
-
-        {%- if products_to_show > 4 -%}
-          {%- assign neem_test_product = all_products['herbal-neem-floor-cleaner'] -%}
-          {%- if neem_test_product != blank -%}
-            {% render 'purelane-product-card', product: neem_test_product, badge_label: 'Eco Pick' %}
-          {%- else -%}
-            <article class="purelane-glass glass purelane-card card rv">
-              <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Eco Pick</span><span class="purelane-pimg pimg p-floor" role="img"></span></div>
-              <h4 class="purelane-card-title">Herbal Neem Floor Cleaner</h4>
-              <div class="purelane-card-rate rate"><b>★ 4.9</b> · 312 reviews</div>
-              <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
-              <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
-            </article>
-          {%- endif -%}
-
-          <article class="purelane-glass glass purelane-card card rv rv-d1">
-            <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Gentle</span><span class="purelane-pimg pimg p-dish" role="img"></span></div>
-            <h4 class="purelane-card-title">Organic Dishwash Liquid Gel</h4>
-            <div class="purelane-card-rate rate"><b>★ 4.8</b> · 198 reviews</div>
-            <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
-            <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
-          </article>
-
-          <article class="purelane-glass glass purelane-card card rv rv-d2">
-            <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Stain Free</span><span class="purelane-pimg pimg p-laundry" role="img"></span></div>
-            <h4 class="purelane-card-title">Plant-Based Laundry Detergent</h4>
-            <div class="purelane-card-rate rate"><b>★ 4.7</b> · 145 reviews</div>
-            <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
-            <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
-          </article>
-
-          <article class="purelane-glass glass purelane-card card rv rv-d3">
-            <div class="purelane-card-shot shot"><span class="purelane-card-pill pill">Disinfect</span><span class="purelane-pimg pimg p-toilet" role="img"></span></div>
-            <h4 class="purelane-card-title">Non-Toxic Toilet Bowl Cleaner</h4>
-            <div class="purelane-card-rate rate"><b>★ 4.8</b> · 267 reviews</div>
-            <div class="purelane-card-pr pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
-            <button class="purelane-btn btn purelane-btn-ghost btn-ghost purelane-btn-sm btn-sm purelane-card-btn">Add to cart</button>
-          </article>
-        {%- endif -%}
-      {%- endif -%}
+        {%- for prod in section.settings.product_list limit: products_to_show -%}{% render 'purelane-product-card', product: prod %}{%- endfor -%}
+      {%- elsif section.settings.collection != blank -%}
+        {%- for prod in section.settings.collection.products limit: products_to_show -%}{% render 'purelane-product-card', product: prod %}{%- endfor -%}
+      {%- else -%}<p class="purelane-body-s">Choose products or a collection in the Theme Editor.</p>{%- endif -%}
     </div>
   </div>
 </section>
-
 {% schema %}
-{
-  "name": "Purelane Bestsellers",
-  "tag": "section",
-  "class": "purelane-bestsellers-section",
-  "settings": [
-    {"type":"text","id":"kicker","label":"Kicker Text","default":"Bestsellers"},
-    {"type":"text","id":"title","label":"Section Heading","default":"Loved by 30,000 homes"},
-    {"type":"collection","id":"collection","label":"Featured Collection"},
-    {"type":"product_list","id":"product_list","label":"Select Products Manually"},
-    {"type":"range","id":"products_to_show","min":2,"max":8,"step":1,"label":"Products to Show","default":8}
-  ],
-  "presets": [{"name":"Purelane Bestsellers"}]
-}
+{"name":"Purelane Bestsellers","tag":"section","class":"purelane-bestsellers-section","settings":[{"type":"text","id":"kicker","label":"Kicker Text","default":"Bestsellers"},{"type":"text","id":"title","label":"Section Heading","default":"Loved by 30,000 homes"},{"type":"collection","id":"collection","label":"Featured Collection"},{"type":"product_list","id":"product_list","label":"Select Products Manually"},{"type":"range","id":"products_to_show","min":2,"max":8,"step":1,"label":"Products to Show","default":8}],"presets":[{"name":"Purelane Bestsellers"}]}
 {% endschema %}
