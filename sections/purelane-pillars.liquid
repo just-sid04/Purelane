@@ -1,37 +1,36 @@
 {% comment %}
   Purelane Brand Pillars Section
-  3 glassmorphic cards: Less scrubbing, Clean ingredients, Safe around everyone.
+  Merchant-editable trust/value cards.
 {% endcomment %}
 
 <section class="purelane-sec" id="how" data-scene="2">
   <div class="purelane-wrap">
     <div class="purelane-pillars pillars">
-      <article class="purelane-glass purelane-pillar pillar rv">
-        <span class="purelane-pi pi">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8.5" r="3.2"/><circle cx="16.4" cy="6.6" r="2.2"/><circle cx="15" cy="13" r="2.8"/><circle cx="8.6" cy="15.6" r="2.1"/><path d="M4 21h16"/></svg>
-        </span>
-        <h3 class="purelane-d3">Less scrubbing</h3>
-        <p class="purelane-body-s">A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.</p>
-        <a class="purelane-btn purelane-btn-ghost purelane-btn-sm" href="#shop">Learn more</a>
-      </article>
-
-      <article class="purelane-glass purelane-pillar pillar rv rv-d2">
-        <span class="purelane-pi pi">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg>
-        </span>
-        <h3 class="purelane-d3">Clean ingredients</h3>
-        <p class="purelane-body-s">No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food.</p>
-        <a class="purelane-btn purelane-btn-ghost purelane-btn-sm" href="#ingredients">Learn more</a>
-      </article>
-
-      <article class="purelane-glass purelane-pillar pillar rv rv-d3">
-        <span class="purelane-pi pi">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/></svg>
-        </span>
-        <h3 class="purelane-d3">Safe around everyone</h3>
-        <p class="purelane-body-s">Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day.</p>
-        <a class="purelane-btn purelane-btn-ghost purelane-btn-sm" href="#proof">Learn more</a>
-      </article>
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <article class="purelane-glass purelane-pillar pillar rv{% if forloop.index > 1 %} rv-d{{ forloop.index | minus: 1 }}{% endif %}" {{ block.shopify_attributes }}>
+            <span class="purelane-pi pi" aria-hidden="true">
+              {%- case block.settings.icon -%}
+                {%- when 'scrub' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8.5" r="3.2"/><circle cx="16.4" cy="6.6" r="2.2"/><circle cx="15" cy="13" r="2.8"/><circle cx="8.6" cy="15.6" r="2.1"/><path d="M4 21h16"/></svg>
+                {%- when 'shield' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg>
+                {%- when 'heart' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/></svg>
+                {%- else -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/></svg>
+              {%- endcase -%}
+            </span>
+            <h3 class="purelane-d3">{{ block.settings.title | escape }}</h3>
+            <p class="purelane-body-s">{{ block.settings.description | escape }}</p>
+            {%- if block.settings.button_label != blank -%}
+              <a class="purelane-btn purelane-btn-ghost purelane-btn-sm" href="{{ block.settings.button_url | default: '#shop' }}">{{ block.settings.button_label | escape }}</a>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      {%- else -%}
+        <p class="purelane-body-s">Add pillar blocks in the Theme Editor.</p>
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -41,9 +40,32 @@
   "name": "Purelane Pillars",
   "tag": "section",
   "class": "purelane-pillars-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "options": [
+          { "value": "scrub", "label": "Scrubbing" },
+          { "value": "shield", "label": "Shield" },
+          { "value": "heart", "label": "Heart" }
+        ], "default": "scrub" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Less scrubbing" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub." },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Learn more" },
+        { "type": "url", "id": "button_url", "label": "Button link" }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Purelane Pillars"
+      "name": "Purelane Pillars",
+      "blocks": [
+        { "type": "pillar", "settings": { "icon": "scrub", "title": "Less scrubbing", "description": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub." } },
+        { "type": "pillar", "settings": { "icon": "shield", "title": "Clean ingredients", "description": "No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food." } },
+        { "type": "pillar", "settings": { "icon": "heart", "title": "Safe around everyone", "description": "Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day." } }
+      ]
     }
   ]
 }

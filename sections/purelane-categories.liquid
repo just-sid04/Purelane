@@ -1,31 +1,32 @@
 {% comment %}
   Purelane Bundle Categories Section
-  4 glassmorphic category cards: Kitchen, Bathroom, Laundry, Hard water.
+  Merchant-editable product-backed category cards.
 {% endcomment %}
 
 <section class="purelane-sec" id="categories" data-scene="4">
   <div class="purelane-wrap">
     <div class="purelane-panel-head rv">
-      <span class="purelane-kicker">Bundle categories</span>
-      <h2 class="purelane-d2" style="margin-top:12px">Find the right bundle for you</h2>
+      <span class="purelane-kicker">{{ section.settings.kicker | default: 'Bundle categories' | escape }}</span>
+      <h2 class="purelane-d2" style="margin-top:12px">{{ section.settings.title | default: 'Find the right bundle for you' | escape }}</h2>
     </div>
     <div class="purelane-cats cats">
-      <a class="purelane-glass cat rv" href="#combos">
-        <span class="ph"><span class="purelane-pimg p-kitchen" role="img" aria-label="Kitchen cleaner"></span></span>
-        <span class="txt"><h4>Kitchen bundle</h4><p>Grease, dishes &amp; more</p></span>
-      </a>
-      <a class="purelane-glass cat rv rv-d1" href="#combos">
-        <span class="ph"><span class="purelane-pimg p-toilet" role="img" aria-label="Toilet cleaner"></span></span>
-        <span class="txt"><h4>Bathroom bundle</h4><p>Deep clean &amp; disinfect</p></span>
-      </a>
-      <a class="purelane-glass cat rv rv-d2" href="#combos">
-        <span class="ph"><span class="purelane-pimg p-laundry" role="img" aria-label="Laundry detergent"></span></span>
-        <span class="txt"><h4>Laundry bundle</h4><p>Softer, fresher wash</p></span>
-      </a>
-      <a class="purelane-glass cat rv rv-d3" href="#combos">
-        <span class="ph"><span class="purelane-pimg p-tap" role="img" aria-label="Tap cleaner"></span></span>
-        <span class="txt"><h4>Hard water bundle</h4><p>Melt away limescale</p></span>
-      </a>
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign category_product = block.settings.product -%}
+          <a class="purelane-glass cat rv{% if forloop.index > 1 %} rv-d{{ forloop.index | minus: 1 }}{% endif %}" href="{{ block.settings.url | default: category_product.url | default: '#combos' }}" {{ block.shopify_attributes }}>
+            <span class="ph">
+              {%- if category_product and category_product.featured_image -%}
+                {{ category_product.featured_image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '180,240,320,360', sizes: '(max-width: 900px) 45vw, 25vw', alt: category_product.featured_image.alt | default: category_product.title, class: 'purelane-pimg pimg' }}
+              {%- else -%}
+                <span class="purelane-pimg pimg p-kitchen" role="img" aria-hidden="true"></span>
+              {%- endif -%}
+            </span>
+            <span class="txt"><h4>{{ block.settings.title | default: category_product.title | default: 'Category' | escape }}</h4><p>{{ block.settings.description | default: 'Explore this collection' | escape }}</p></span>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        <p class="purelane-body-s">Add category blocks in the Theme Editor.</p>
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -35,9 +36,31 @@
   "name": "Purelane Categories",
   "tag": "section",
   "class": "purelane-categories-section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Bundle categories" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Find the right bundle for you" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "title", "label": "Category title", "default": "Kitchen bundle" },
+        { "type": "text", "id": "description", "label": "Description", "default": "Grease, dishes & more" },
+        { "type": "url", "id": "url", "label": "Link" }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Purelane Categories"
+      "name": "Purelane Categories",
+      "blocks": [
+        { "type": "category", "settings": { "title": "Kitchen bundle", "description": "Grease, dishes & more" } },
+        { "type": "category", "settings": { "title": "Bathroom bundle", "description": "Deep clean & disinfect" } },
+        { "type": "category", "settings": { "title": "Laundry bundle", "description": "Softer, fresher wash" } },
+        { "type": "category", "settings": { "title": "Hard water bundle", "description": "Melt away limescale" } }
+      ]
     }
   ]
 }
