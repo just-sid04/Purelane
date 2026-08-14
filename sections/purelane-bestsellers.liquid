@@ -2,12 +2,14 @@
   <div class="purelane-wrap wrap">
     <div class="purelane-panel-head panel-head rv"><span class="purelane-kicker kicker">{{ section.settings.kicker | default: 'Bestsellers' | escape }}</span><h2 class="purelane-d2 d2" style="margin-top:12px">{{ section.settings.title | default: 'Loved by 30,000 homes' | escape }}</h2><div class="purelane-rule rule"><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><i></i></div></div>
     <div class="purelane-shelf shelf">
-      {%- assign products_to_show = section.settings.products_to_show | default: 4 -%}
+      {%- assign products_to_show = section.settings.products_to_show | default: 8 -%}
       {%- if section.settings.product_list != blank -%}
         {%- for prod in section.settings.product_list limit: products_to_show -%}{% render 'purelane-product-card', product: prod %}{%- endfor -%}
       {%- elsif section.settings.collection != blank -%}
         {%- for prod in section.settings.collection.products limit: products_to_show -%}{% render 'purelane-product-card', product: prod %}{%- endfor -%}
-      {%- else -%}<p class="purelane-body-s">Choose products or a collection in the Theme Editor.</p>{%- endif -%}
+      {%- else -%}
+        {%- for prod in collections.all.products limit: products_to_show -%}{% render 'purelane-product-card', product: prod %}{%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
 </section>
