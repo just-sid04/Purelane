@@ -1,298 +1,277 @@
-/* ==========================================================================
-   PURELANE SHOPIFY THEME - FULL MOTION ENGINE (100% prototype parity)
-   Source of Truth: purelane-homepage.html (JS block lines 1567-1714)
-   ========================================================================== */
+/* PURELANE MOTION ENGINE - section-safe Theme Editor version */
 'use strict';
 
-/* ─── DOM REFERENCES ─────────────────────────────────────────────── */
-const hdr    = document.getElementById('hdr');
-const scenes = document.getElementById('scenes');
-const heroProd = document.getElementById('heroProd');
-const hstage = document.getElementById('hstage');
-const hdots  = document.getElementById('hdots');
-const rotEl  = document.getElementById('rot');
+const PURELANE = new WeakMap();
+let revealObserver = null;
+let globalMotionReady = false;
 
-/* ─── SCENE / BACKGROUND CROSSFADE ENGINE ───────────────────────── */
-function getSecEls() { return [...document.querySelectorAll('[data-scene]')]; }
-const sceneEls = [...document.querySelectorAll('#scenes .scene')];
-
-function setScene(n) {
-  if (!scenes) return;
-  const current = parseInt(scenes.dataset.sc, 10) || 1;
-  if (current === n) return;
-  scenes.dataset.sc = n;
-  sceneEls.forEach((s, i) => s.classList.toggle('on', i === n - 1));
+function getSection(el) {
+  return el?.closest('.shopify-section,[id^="shopify-section-"]') || el?.parentElement || null;
+}
+function eventSection(event) {
+  const target = event?.target;
+  if (target?.matches?.('.shopify-section,[id^="shopify-section-"]')) return target;
+  const root = target?.closest?.('.shopify-section,[id^="shopify-section-"]');
+  if (root) return root;
+  const id = event?.detail?.sectionId;
+  return id ? document.getElementById(`shopify-section-${id}`) : null;
+}
+function addCleanup(root, fn) {
+  if (!root) return;
+  const list = PURELANE.get(root) || [];
+  list.push(fn);
+  PURELANE.set(root, list);
+}
+function cleanup(root) {
+  if (!root) return;
+  (PURELANE.get(root) || []).forEach(fn => { try { fn(); } catch (_) {} });
+  PURELANE.delete(root);
+  root.querySelectorAll('.rv').forEach(el => revealObserver?.unobserve(el));
 }
 
-/* ─── SCROLL ENGINE ─────────────────────────────────────────────── */
-let lastY = 0;
-function onScroll() {
-  const y = window.scrollY;
+function updateScrollState() {
+  const hdr = document.querySelector('#hdr,[data-purelane-header]');
+  if (hdr) hdr.classList.toggle('up', window.scrollY > 90);
 
-  /* header docking */
-  if (hdr) hdr.classList.toggle('up', y > 90);
-
-  /* scene crossfade based on most-visible data-scene section */
-  const secEls = getSecEls();
-  if (secEls.length) {
-    let bestScene = 1;
-    let bestVis = 0;
-    secEls.forEach(el => {
-      const r = el.getBoundingClientRect();
-      const vis = Math.max(0, Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0));
-      if (vis > bestVis) { bestVis = vis; bestScene = parseInt(el.dataset.scene, 10) || 1; }
+  document.querySelectorAll('#scenes,[data-purelane-scenes]').forEach(scenes => {
+    const sceneEls = [...scenes.querySelectorAll('.scene')];
+    if (!sceneEls.length) return;
+    let best = parseInt(scenes.dataset.sc, 10) || 1;
+    let visible = 0;
+    document.querySelectorAll('[data-scene]').forEach(section => {
+      const r = section.getBoundingClientRect();
+      const amount = Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0));
+      if (amount > visible) {
+        visible = amount;
+        best = parseInt(section.dataset.scene, 10) || 1;
+      }
     });
-    setScene(bestScene);
-  }
+    if (parseInt(scenes.dataset.sc, 10) !== best) {
+      scenes.dataset.sc = best;
+      sceneEls.forEach((scene, i) => scene.classList.toggle('on', i === best - 1));
+    }
+  });
 
-  /* side rail active dot */
-  const rail = document.getElementById('rail');
-  if (rail) {
-    const railLinks = [...rail.querySelectorAll('a')];
-    railLinks.forEach(link => {
-      const id = link.getAttribute('href')?.replace('#','');
-      const target = id ? document.getElementById(id) : null;
-      if (!target) return;
-      const r = target.getBoundingClientRect();
-      const active = r.top < window.innerHeight * 0.6 && r.bottom > window.innerHeight * 0.1;
-      link.classList.toggle('on', active);
-    });
-  }
-
-  lastY = y;
-}
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
-
-/* ─── MOUSE PARALLAX ON WATER LAYERS ───────────────────────────── */
-const wls = document.querySelectorAll('.wl');
-if (wls.length) {
-  document.addEventListener('mousemove', e => {
-    const px = ((e.clientX / window.innerWidth) - 0.5) * 18;
-    const py = ((e.clientY / window.innerHeight) - 0.5) * 10;
-    wls.forEach((wl, i) => {
-      const f = 1 + i * 0.35;
-      wl.style.setProperty('--px', `${px * f}px`);
-      wl.style.setProperty('--py', `${py * f}px`);
-    });
-  }, { passive: true });
+  const rail = document.querySelector('#rail,[data-purelane-rail]');
+  if (rail) rail.querySelectorAll('a').forEach(link => {
+    const id = link.getAttribute('href')?.replace(/^#/, '');
+    const target = id ? document.getElementById(id) : null;
+    if (!target) return;
+    const r = target.getBoundingClientRect();
+    link.classList.toggle('on', r.top < innerHeight * .6 && r.bottom > innerHeight * .1);
+  });
 }
 
-/* ─── SCROLL REVEAL (IntersectionObserver) ────────────────────────
-   Guard: skip elements already revealed (.rv.in) so re-calls from
-   shopify:section:load don't create stacked observers on resolved els.
-   ─────────────────────────────────────────────────────────────── */
-let _revealIO = null;
-
-function initReveals() {
-  /* Collect only elements not yet revealed */
-  const rvEls = [...document.querySelectorAll('.rv:not(.in)')];
-  if (!rvEls.length) return;
-
-  /* Reuse a single shared observer if possible */
-  if (!_revealIO) {
-    _revealIO = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          _revealIO.unobserve(entry.target);
-        }
+function initGlobalMotion() {
+  if (globalMotionReady) return;
+  globalMotionReady = true;
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+  updateScrollState();
+  if (!matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+    document.addEventListener('mousemove', event => {
+      const px = ((event.clientX / innerWidth) - .5) * 18;
+      const py = ((event.clientY / innerHeight) - .5) * 10;
+      document.querySelectorAll('.wl').forEach((wl, i) => {
+        const f = 1 + i * .35;
+        wl.style.setProperty('--px', `${px * f}px`);
+        wl.style.setProperty('--py', `${py * f}px`);
       });
-    }, { threshold: 0.11 });
+    }, { passive: true });
   }
-
-  rvEls.forEach(el => _revealIO.observe(el));
 }
-initReveals();
 
-/* ─── HERO CAROUSEL ─────────────────────────────────────────────── */
-/* Guard: only ever run once. shopify:section:load re-call is safe   */
-let _heroInitialized = false;
-(function heroCarousel() {
-  if (_heroInitialized) return;
-  if (!hstage || !hdots) return;
-  _heroInitialized = true;
+function initReveals(scope = document) {
+  const items = [...scope.querySelectorAll('.rv:not(.in)')];
+  if (!items.length) return;
+  if (!revealObserver) revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: .11 });
+  items.forEach(item => revealObserver.observe(item));
+}
 
-  const slides = [...hstage.querySelectorAll('.hslide')];
-  const dots   = [...hdots.querySelectorAll('button')];
-  if (!slides.length) return;
-  let cur = 0;
-  let breathAnim = null;
+function initHeroes(scope = document) {
+  scope.querySelectorAll('.hstage').forEach(stage => {
+    const root = getSection(stage);
+    if (!root || root.dataset.purelaneHeroReady === '1') return;
+    const slides = [...stage.querySelectorAll('.hslide')];
+    const dotsWrap = stage.querySelector('#hdots,[data-hero-dots]') || root.querySelector('#hdots,[data-hero-dots]');
+    const dots = dotsWrap ? [...dotsWrap.querySelectorAll('button')] : [];
+    if (!slides.length) return;
+    root.dataset.purelaneHeroReady = '1';
 
-  /* Breathing ambient shadow on the product container */
-  function startBreathing() {
-    if (breathAnim) breathAnim.cancel();
-    if (!heroProd || !window.Animation) return;
-    try {
-      breathAnim = heroProd.animate([
-        { filter: 'drop-shadow(0 34px 54px rgba(2,20,19,.60))' },
-        { filter: 'drop-shadow(0 42px 68px rgba(2,20,19,.72))' },
-        { filter: 'drop-shadow(0 34px 54px rgba(2,20,19,.60))' }
-      ], { duration: 4800, easing: 'ease-in-out', iterations: Infinity });
-    } catch(e) {
-      /* Fallback: CSS animation handles this */
+    let current = Math.max(0, slides.findIndex(x => x.classList.contains('on')));
+    let timer = null;
+    let breath = null;
+    let paused = false;
+    const reduced = matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+    const go = n => {
+      const old = current;
+      current = (n + slides.length) % slides.length;
+      slides[old]?.classList.remove('on');
+      dots[old]?.classList.remove('on');
+      slides[current]?.classList.add('on');
+      dots[current]?.classList.add('on');
+    };
+    const stop = () => { clearInterval(timer); timer = null; };
+    const start = () => {
+      if (paused || reduced || slides.length < 2) return;
+      stop();
+      timer = setInterval(() => go(current + 1), 4000);
+    };
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => go(i)));
+    stage.addEventListener('pointerenter', () => { paused = true; stop(); });
+    stage.addEventListener('pointerleave', () => { paused = false; start(); });
+
+    const product = root.querySelector('#heroProd,[data-hero-product]');
+    if (product && window.Animation && !reduced) {
+      try {
+        breath = product.animate([
+          { filter: 'drop-shadow(0 34px 54px rgba(2,20,19,.60))' },
+          { filter: 'drop-shadow(0 42px 68px rgba(2,20,19,.72))' },
+          { filter: 'drop-shadow(0 34px 54px rgba(2,20,19,.60))' }
+        ], { duration: 4800, easing: 'ease-in-out', iterations: Infinity });
+      } catch (_) {}
     }
-  }
+    go(current);
+    start();
+    addCleanup(root, () => { stop(); breath?.cancel?.(); delete root.dataset.purelaneHeroReady; });
+  });
+}
 
-  function goTo(n) {
-    slides[cur].classList.remove('on');
-    dots[cur]?.classList.remove('on');
-    cur = (n + slides.length) % slides.length;
-    slides[cur].classList.add('on');
-    dots[cur]?.classList.add('on');
-  }
+function initRotators(scope = document) {
+  scope.querySelectorAll('#rot,.rot,[data-purelane-rotator]').forEach(rot => {
+    if (rot.dataset.purelaneRotatorReady === '1') return;
+    const root = getSection(rot);
+    const imgs = [...rot.querySelectorAll('.pimg')];
+    const dots = [...rot.querySelectorAll('.dots i')];
+    const cap = rot.querySelector('.cap');
+    if (!root || !imgs.length) return;
+    rot.dataset.purelaneRotatorReady = '1';
+    let current = Math.max(0, imgs.findIndex(x => x.classList.contains('on')));
+    const reduced = matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    const show = n => {
+      const old = current;
+      current = (n + imgs.length) % imgs.length;
+      imgs[old]?.classList.remove('on');
+      dots[old]?.classList.remove('on');
+      imgs[current]?.classList.add('on');
+      dots[current]?.classList.add('on');
+      if (cap) {
+        const b = cap.querySelector('b');
+        const s = cap.querySelector('span');
+        if (b) b.textContent = imgs[current].dataset.name || '';
+        if (s) s.textContent = imgs[current].dataset.note || '';
+      }
+    };
+    dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+    const timer = reduced || imgs.length < 2 ? null : setInterval(() => show(current + 1), 2800);
+    show(current);
+    addCleanup(root, () => { clearInterval(timer); delete rot.dataset.purelaneRotatorReady; });
+  });
+}
 
-  /* Auto-advance every 4 s */
-  let timer = setInterval(() => goTo(cur + 1), 4000);
-  hstage.addEventListener('pointerenter', () => clearInterval(timer));
-  hstage.addEventListener('pointerleave', () => { timer = setInterval(() => goTo(cur + 1), 4000); });
+function initScrollHints(scope = document) {
+  scope.querySelectorAll('.comborail').forEach(rail => {
+    const root = getSection(rail), cue = root?.querySelector('.swipecue');
+    if (!root || !cue || rail.dataset.purelaneHintReady === '1') return;
+    rail.dataset.purelaneHintReady = '1';
+    const fn = () => { cue.style.opacity = rail.scrollLeft > 20 ? '0' : '1'; };
+    rail.addEventListener('scroll', fn, { passive: true });
+    addCleanup(root, () => { rail.removeEventListener('scroll', fn); delete rail.dataset.purelaneHintReady; });
+  });
+  scope.querySelectorAll('.stripwrap').forEach(strip => {
+    const root = getSection(strip), hint = root?.querySelector('.striphint');
+    if (!root || !hint || strip.dataset.purelaneHintReady === '1') return;
+    strip.dataset.purelaneHintReady = '1';
+    const fn = () => { hint.style.opacity = strip.scrollLeft > 10 ? '0' : '1'; };
+    strip.addEventListener('scroll', fn, { passive: true });
+    addCleanup(root, () => { strip.removeEventListener('scroll', fn); delete strip.dataset.purelaneHintReady; });
+  });
+}
 
-  startBreathing();
-})();
-
-/* ─── PRODUCT ROTATOR ────────────────────────────────────────────── */
-/* Guard: only ever run once.                                         */
-let _rotatorInitialized = false;
-(function productRotator() {
-  if (_rotatorInitialized) return;
-  if (!rotEl) return;
-  _rotatorInitialized = true;
-
-  const imgs   = [...rotEl.querySelectorAll('.pimg')];
-  const capEl  = rotEl.querySelector('.cap');
-  const dotsEl = rotEl.querySelectorAll('.dots i');
-  if (!imgs.length) return;
-
-  let cur = 0;
-  function showProduct(n) {
-    imgs[cur].classList.remove('on');
-    dotsEl[cur]?.classList.remove('on');
-    cur = (n + imgs.length) % imgs.length;
-    imgs[cur].classList.add('on');
-    dotsEl[cur]?.classList.add('on');
-    if (capEl) {
-      const name = imgs[cur].dataset.name || '';
-      const note = imgs[cur].dataset.note || '';
-      capEl.querySelector('b').textContent = name;
-      capEl.querySelector('span').textContent = note;
-    }
-  }
-
-  setInterval(() => showProduct(cur + 1), 2800);
-  dotsEl.forEach((d, i) => d.addEventListener('click', () => showProduct(i)));
-  showProduct(0);
-})();
-
-/* ─── AJAX ADD-TO-CART ─────────────────────────────────────────── */
-/* Using event delegation (single listener on document) — duplicate-safe */
-document.addEventListener('click', async e => {
-  const btn = e.target.closest('[name="add"],[data-atc]');
-  if (!btn) return;
-  const form = btn.closest('form');
+async function addToCart(event) {
+  const button = event.target.closest('[name="add"],[data-atc]');
+  if (!button) return;
+  const form = button.closest('form');
   if (!form) return;
-  e.preventDefault();
-
+  event.preventDefault();
   const id = form.querySelector('[name="id"]')?.value;
-  if (!id) return;
-
-  btn.disabled = true;
-  const origText = btn.textContent;
-  btn.textContent = 'Adding…';
-
+  if (!id || button.disabled) return;
+  button.disabled = true;
+  const original = button.textContent;
+  button.textContent = 'Adding…';
   try {
-    const res = await fetch('/cart/add.js', {
+    const response = await fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
       body: JSON.stringify({ id, quantity: 1 })
     });
-    if (!res.ok) throw new Error('Cart error');
-    await res.json();
-
-    /* Update cart count dot */
-    const cartCount = await fetch('/cart.js').then(r => r.json()).then(c => c.item_count);
-    document.querySelectorAll('.dot').forEach(d => { d.textContent = cartCount; });
-
-    btn.textContent = 'Added ✓';
-    setTimeout(() => { btn.textContent = origText; btn.disabled = false; }, 1600);
-  } catch {
-    btn.textContent = 'Error — retry';
-    setTimeout(() => { btn.textContent = origText; btn.disabled = false; }, 1600);
+    if (!response.ok) throw new Error('cart');
+    await response.json();
+    const cart = await fetch('/cart.js').then(r => r.json());
+    document.querySelectorAll('.dot').forEach(dot => { dot.textContent = cart.item_count; });
+    button.textContent = 'Added ✓';
+    setTimeout(() => { button.textContent = original; button.disabled = false; }, 1600);
+  } catch (_) {
+    button.textContent = 'Error — retry';
+    setTimeout(() => { button.textContent = original; button.disabled = false; }, 1600);
   }
-});
+}
 
-/* ─── COMBO SWIPE CUE FADE ─────────────────────────────────────── */
-(function swipeCue() {
-  const rail = document.querySelector('.comborail');
-  const cue  = document.querySelector('.swipecue');
-  if (!rail || !cue) return;
-  rail.addEventListener('scroll', () => { cue.style.opacity = rail.scrollLeft > 20 ? '0' : '1'; }, { passive: true });
-})();
-
-/* ─── RANGE SHELF SCROLL HINT ───────────────────────────────────── */
-(function rangeHint() {
-  const hint = document.querySelector('.striphint');
-  const stripwrap = document.querySelector('.stripwrap');
-  if (!hint || !stripwrap) return;
-  stripwrap.addEventListener('scroll', () => { hint.style.opacity = stripwrap.scrollLeft > 10 ? '0' : '1'; }, { passive: true });
-})();
-
-/* ─── MOBILE BURGER TOGGLE ──────────────────────────────────────── */
-/* Using event delegation to stay duplicate-safe */
-document.addEventListener('click', e => {
-  const burger = e.target.closest('.burger');
+function burgerToggle(event) {
+  const burger = event.target.closest('.burger');
   if (!burger) return;
-  const nav = document.querySelector('.nav');
+  const root = getSection(burger);
+  const nav = root?.querySelector('.nav') || document.querySelector('.nav');
   if (!nav) return;
   const open = nav.classList.toggle('open');
-  burger.setAttribute('aria-expanded', open);
-});
+  burger.setAttribute('aria-expanded', String(open));
+}
 
-/* ─── DEEP-LINK SMOOTH SCROLL (event delegation — duplicate-safe) ── */
-document.addEventListener('click', e => {
-  const link = e.target.closest('a[href^="#"]');
+function smoothAnchor(event) {
+  const link = event.target.closest('a[href^="#"]');
   if (!link) return;
-  const id = link.getAttribute('href').slice(1);
-  if (!id) return;
-  const target = document.getElementById(id);
+  const id = link.getAttribute('href')?.slice(1);
+  const target = id ? document.getElementById(id) : null;
   if (!target) return;
-  e.preventDefault();
-  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+  event.preventDefault();
+  target.scrollIntoView({ behavior: matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
 
-/* ─── SHOPIFY THEME EDITOR LIFECYCLE HOOKS ─────────────────────── */
-/* section:load fires after a section is added or reloaded in the   */
-/* Theme Editor. Re-run reveals for new .rv elements. Scene + scroll */
-/* state is recalculated. Hero & rotator guards prevent re-init.     */
-document.addEventListener('shopify:section:load', () => {
-  initReveals();
-  onScroll();
-});
+function initialise(scope = document) {
+  initGlobalMotion();
+  initReveals(scope);
+  initHeroes(scope);
+  initRotators(scope);
+  initScrollHints(scope);
+  updateScrollState();
+}
 
-/* section:unload fires before a section is removed */
-document.addEventListener('shopify:section:unload', () => {
-  onScroll();
-});
+initialise();
+document.addEventListener('click', addToCart);
+document.addEventListener('click', burgerToggle);
+document.addEventListener('click', smoothAnchor);
 
-/* section:reorder fires after drag-drop reorder */
-document.addEventListener('shopify:section:reorder', () => {
-  onScroll();
+document.addEventListener('shopify:section:load', event => {
+  const root = eventSection(event);
+  if (!root) return;
+  cleanup(root);
+  initialise(root);
 });
-
-/* section:select fires when merchant clicks on a section in sidebar */
-document.addEventListener('shopify:section:select', () => {
-  onScroll();
+document.addEventListener('shopify:section:unload', event => {
+  const root = eventSection(event);
+  if (root) cleanup(root);
+  updateScrollState();
 });
-
-/* section:deselect fires when merchant deselects a section */
-document.addEventListener('shopify:section:deselect', () => {
-  onScroll();
-});
-
-/* block:select fires when merchant selects a block within a section */
-document.addEventListener('shopify:block:select', e => {
-  /* Scroll into view for better editing UX */
-  const sectionEl = e.target;
-  if (sectionEl) sectionEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-});
+document.addEventListener('shopify:section:reorder', () => { initReveals(); updateScrollState(); });
+document.addEventListener('shopify:section:select', event => { const root = eventSection(event); if (root) initReveals(root); updateScrollState(); });
+document.addEventListener('shopify:section:deselect', updateScrollState);
+document.addEventListener('shopify:block:select', event => { event.target?.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' }); });
