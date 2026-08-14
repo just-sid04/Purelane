@@ -1,8 +1,1 @@
-{% comment %}
-  Deprecated Purelane header section.
-  The active homepage header is sections/purelane-header-fixed.liquid.
-{% endcomment %}
-<section class="purelane-header-deprecated" hidden aria-hidden="true"></section>
-{% schema %}
-{"name":"Purelane Header Old","tag":"section","class":"purelane-header-deprecated-section","settings":[],"presets":[{"name":"Purelane Header Old"}]}
-{% endschema %}
+{% comment %} Compatibility alias for non-home templates. The fixed header is the canonical implementation. {% endcomment %}{% render 'purelane-background-scenes' %}
